@@ -101,7 +101,7 @@
 <div class="row">
 
     <div class="col-md-4 mt-3">
-        <h2>Category</h2>
+        <h2>Page</h2>
     </div>
 
     <div class="col-md-4">
@@ -109,7 +109,7 @@
     </div>
 
     <div style="text-align: center;" class="col-md-4 mt-3">
-        <a style="background-color: #007bff;" href="{{route('backend.category.form')}}" class="btn btn-primary" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
+        <a style="background-color: #007bff;" href="{{route('backend.page.form')}}" class="btn btn-primary" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
     </div>
 
 </div>
@@ -118,25 +118,31 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Category Name</th>
-            <th>Image</th>
+            <th>Page Position</th>
+            <th>Page Name</th>
+            <th>Page Title</th>
+            <th>Page Description</th>
+            <th>Page Image</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($allCategory as $key=>$cat)
+        @foreach ($allPage as $key=>$page)
             
         <tr>
             <td>{{ $key + 1 }}</td>
-            <td>{{$cat->cat_name}}</td>
+            <td>{{$page->page_position}}</td>
+            <td>{{$page->page_name}}</td>
+            <td>{{$page->page_title}}</td>
+            <td>{{$page->page_description}}</td>
             <td>
-                <img src="{{ url('/uploads/category/' . $cat->cat_image) }}" alt="{{$cat->cat_name}}" >
+                <img src="{{ url('/uploads/page/' . $page->page_image) }}" alt="{{$page->page_name}}" >
             </td>
             <td>
                 <!-- Edit -->
-                <a href="{{ route('backend.category.edit', $cat->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{{ route('backend.page.edit', $page->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
                 <!-- Remove -->
-                <a href="{{route('backend.category.delete', $cat->id)}}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
+                <a href="{{route('backend.page.delete', $page->id)}}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
 

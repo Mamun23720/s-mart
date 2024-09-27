@@ -23,12 +23,15 @@
 
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/dist/css/adminlte.min.css?v=3.2.0">
 
+    @notifyCss
+
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
 
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/daterangepicker/daterangepicker.css">
 
     <link rel="stylesheet" href="https://adminlte.io/themes/v3/plugins/summernote/summernote-bs4.min.css">
 
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 </head>
 
@@ -87,7 +90,7 @@
 
             <section class="content">
 
-
+            @include('notify::components.notify')
 
                 @yield('content')
 
@@ -129,11 +132,15 @@
     <script src="https://adminlte.io/themes/v3/plugins/sparklines/sparkline.js"></script>
 
     <script src="https://adminlte.io/themes/v3/plugins/jqvmap/jquery.vmap.min.js"></script>
+
     <script src="https://adminlte.io/themes/v3/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
 
     <script src="https://adminlte.io/themes/v3/plugins/jquery-knob/jquery.knob.min.js"></script>
 
     <script src="https://adminlte.io/themes/v3/plugins/moment/moment.min.js"></script>
+
+    @notifyJs
+
     <script src="https://adminlte.io/themes/v3/plugins/daterangepicker/daterangepicker.js"></script>
 
     <script src="https://adminlte.io/themes/v3/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>

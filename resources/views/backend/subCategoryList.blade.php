@@ -41,7 +41,6 @@
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid #ddd;
-        text-align: center;
     }
 
     
@@ -101,7 +100,7 @@
 <div class="row">
 
     <div class="col-md-4 mt-3">
-        <h2>Category</h2>
+        <h2>Sub Category</h2>
     </div>
 
     <div class="col-md-4">
@@ -109,7 +108,9 @@
     </div>
 
     <div style="text-align: center;" class="col-md-4 mt-3">
-        <a style="background-color: #007bff;" href="{{route('backend.category.form')}}" class="btn btn-primary" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
+
+        <a style="background-color: #007bff;" href="{{route('backend.sub.category.form')}}" class="btn btn-primary" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
+  
     </div>
 
 </div>
@@ -118,25 +119,27 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Category Name</th>
+            <th>Sub Category Name</th>
             <th>Image</th>
+            <th>Main Category Name</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($allCategory as $key=>$cat)
+        @foreach ($allSubCategory as $key=>$cat)
             
         <tr>
             <td>{{ $key + 1 }}</td>
-            <td>{{$cat->cat_name}}</td>
+            <td>{{$cat->sub_name}}</td>
             <td>
-                <img src="{{ url('/uploads/category/' . $cat->cat_image) }}" alt="{{$cat->cat_name}}" >
+                <img src="{{ url('/uploads/subCategory/' . $cat->sub_image) }}" width="50px" height="50px">
             </td>
+            <td>{{$cat->cat_id}}</td>
             <td>
                 <!-- Edit -->
-                <a href="{{ route('backend.category.edit', $cat->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{{ route('backend.sub.category.edit', $cat->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
                 <!-- Remove -->
-                <a href="{{route('backend.category.delete', $cat->id)}}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
+                <a href="{{route('backend.sub.category.delete', $cat->id)}}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
 
