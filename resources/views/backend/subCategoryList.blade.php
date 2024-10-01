@@ -134,7 +134,7 @@
             <td>
                 <img src="{{ url('/uploads/subCategory/' . $cat->sub_image) }}" width="50px" height="50px">
             </td>
-            <td>{{$cat->cat_id}}</td>
+            <td>{{$cat->cat_name}}</td>
             <td>
                 <!-- Edit -->
                 <a href="{{ route('backend.sub.category.edit', $cat->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
