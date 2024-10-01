@@ -44,7 +44,7 @@
         text-align: center;
     }
 
-    
+
     .form-container {
             max-width: 500px;
             margin: 0 auto;
@@ -54,7 +54,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .form-container input[type="text"], 
+        .form-container input[type="text"],
         .form-container input[type="file"] {
             width: 100%;
             padding: 10px;
@@ -109,7 +109,7 @@
     </div>
 
     <div style="text-align: center;" class="col-md-4 mt-3">
-        <a style="background-color: #007bff;" href="{{route('backend.category.form')}}" class="btn btn-primary" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
+        <a style="background-color: #007bff;" href="{{route('backend.category.form')}}" class="btn btn-primary btn-lg" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
     </div>
 
 </div>
@@ -119,19 +119,24 @@
         <tr>
             <th>ID</th>
             <th>Category Name</th>
-            <th>Image</th>
+            <th>Parent Name</th>
+            <th>Category Slug</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
         @foreach ($allCategory as $key=>$cat)
-            
+
         <tr>
             <td>{{ $key + 1 }}</td>
             <td>{{$cat->cat_name}}</td>
-            <td>
+            {{-- <td>{{$cat->parent->cat_name}}</td> --}}
+            <td>{{optional($cat->parent)->cat_name}}</td>
+            <td>{{$cat->cat_slug}}</td>
+            {{-- <td>{{is_null($cat->parent) ? '' : $cat->parent->cat_name}}</td> --}}
+            {{-- <td>
                 <img src="{{ url('/uploads/category/' . $cat->cat_image) }}" alt="{{$cat->cat_name}}" >
-            </td>
+            </td> --}}
             <td>
                 <!-- Edit -->
                 <a href="{{ route('backend.category.edit', $cat->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>

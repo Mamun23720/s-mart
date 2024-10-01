@@ -38,46 +38,30 @@
                     </p>
                 </a>
             </li> -->
-            
+
             <!-- Category -->
 
             <li class="nav-item">
-                <a class="nav-link">
-                    <i class="nav-icon fas fa-copy"></i>
+                <a href="{{route('backend.category.list')}}" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
                     <p>
                         Category
-                        <i class="fas fa-angle-left right"></i>
+                        {{-- <i class="fas fa-angle-left right"></i> --}}
                         <!-- <span class="badge badge-info right">6</span> -->
                     </p>
                 </a>
-                <ul class="nav nav-treeview">
-                    <li class="nav-item">
-                        <a href="{{route('backend.category.list')}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Category</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{route('backend.sub.category.list')}}" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Sub Category</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Child Category</p>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="#" class="nav-link">
-                            <i class="far fa-circle nav-icon"></i>
-                            <p>Brand</p>
-                        </a>
-                    </li>
-                </ul>
             </li>
 
+            <li class="nav-item">
+                <a href="{{route('backend.category.list')}}" class="nav-link">
+                        <i class="nav-icon fas fa-copy"></i>
+                    <p>
+                        Product
+                        {{-- <i class="fas fa-angle-left right"></i> --}}
+                        <!-- <span class="badge badge-info right">6</span> -->
+                    </p>
+                </a>
+            </li>
 
             <!-- Settings -->
 
@@ -129,10 +113,10 @@
 
             <!-- Many item is here -->
 
-            
 
 
-<!--                         
+
+<!--
             <li class="nav-item">
                 <a href="#" class="nav-link">
                     <i class="nav-icon fas fa-chart-pie"></i>
@@ -647,16 +631,16 @@
                     <p>Level 1</p>
                 </a>
             </li> -->
-            
-            
-            
-            
+
+
+
+
             <!-- Many item is here -->
 
-            
-            
-            
-            
+
+
+
+
             <li class="nav-header">Profile</li>
             <li class="nav-item">
                 <a href="#" class="nav-link">

@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SubCategoryController;
 use Illuminate\Support\Facades\Route;
@@ -18,8 +19,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/', [DashboardController::class, 'dashboard'])->name('backend.dashboard');
             Route::get('/logout', [AuthenticationController::class, 'logout'])->name('backend.logout');
 
-                Route::group(['prefix' => 'category'], function () {
-                    Route::group(['prefix' => 'maincategory'], function () {
+                    Route::group(['prefix' => 'category'], function () {
                         Route::get('/list', [CategoryController::class, 'categoryList'])->name('backend.category.list');
                         Route::get('/form', [CategoryController::class, 'categoryForm'])->name('backend.category.form');
                         Route::post('/store', [CategoryController::class, 'categoryStore'])->name('backend.category.store');
@@ -27,32 +27,16 @@ Route::group(['prefix' => 'admin'], function () {
                         Route::post('/update/{catID}', [CategoryController::class, 'categoryUpdate'])->name('backend.category.update');
                         Route::get('/delete/{catID}', [CategoryController::class, 'categoryDelete'])->name('backend.category.delete');
                     });
-                    Route::group(['prefix' => 'subcategory'], function () {
-                        Route::get('/list', [SubCategoryController::class, 'subCategoryList'])->name('backend.sub.category.list');
-                        Route::get('/form', [SubCategoryController::class, 'subCategoryForm'])->name('backend.sub.category.form');
-                        Route::post('/store', [SubCategoryController::class, 'subCategoryStore'])->name('backend.sub.category.store');
-                        Route::get('/edit/{catID}', [SubCategoryController::class, 'subCategoryEdit'])->name('backend.sub.category.edit');
-                        Route::post('/update/{catID}', [SubCategoryController::class, 'subCategoryUpdate'])->name('backend.sub.category.update');
-                        Route::get('/delete/{catID}', [SubCategoryController::class, 'subCategoryDelete'])->name('backend.sub.category.delete');
+
+                    Route::group(['prefix' => 'product'], function () {
+                        Route::get('/list', [ProductController::class, 'productList'])->name('backend.product.list');
+                        Route::get('/form', [ProductController::class, 'productForm'])->name('backend.product.form');
+                        Route::post('/store', [ProductController::class, 'productStore'])->name('backend.product.store');
+                        Route::get('/edit/{catID}', [ProductController::class, 'productEdit'])->name('backend.product.edit');
+                        Route::post('/update/{catID}', [ProductController::class, 'productUpdate'])->name('backend.product.update');
+                        Route::get('/delete/{catID}', [ProductController::class, 'productDelete'])->name('backend.product.delete');
                     });
-                    Route::group(['prefix' => 'childcategory'], function () {
-                        // Route::get('/list', [SubCategoryController::class, 'subCategoryList'])->name('backend.sub.category.list');
-                        // Route::get('/form', [SubCategoryController::class, 'subCategoryForm'])->name('backend.sub.category.form');
-                        // Route::post('/store', [SubCategoryController::class, 'subCategoryStore'])->name('backend.sub.category.store');
-                        // Route::get('/edit/{catID}', [SubCategoryController::class, 'subCategoryEdit'])->name('backend.sub.category.edit');
-                        // Route::post('/update/{catID}', [SubCategoryController::class, 'subCategoryUpdate'])->name('backend.sub.category.update');
-                        // Route::get('/delete/{catID}', [SubCategoryController::class, 'subCategoryDelete'])->name('backend.sub.category.delete');
-                    });
-                    Route::group(['prefix' => 'brand'], function () {
-                        // Route::get('/list', [SubCategoryController::class, 'subCategoryList'])->name('backend.sub.category.list');
-                        // Route::get('/form', [SubCategoryController::class, 'subCategoryForm'])->name('backend.sub.category.form');
-                        // Route::post('/store', [SubCategoryController::class, 'subCategoryStore'])->name('backend.sub.category.store');
-                        // Route::get('/edit/{catID}', [SubCategoryController::class, 'subCategoryEdit'])->name('backend.sub.category.edit');
-                        // Route::post('/update/{catID}', [SubCategoryController::class, 'subCategoryUpdate'])->name('backend.sub.category.update');
-                        // Route::get('/delete/{catID}', [SubCategoryController::class, 'subCategoryDelete'])->name('backend.sub.category.delete');
-                    });
-                });
-                
+
                 Route::group(['prefix' => 'settings'], function () {
                     Route::group(['prefix' => 'seo'], function () {
                         // Route::get('/list', [SettingController::class, 'categoryList'])->name('backend.category.list');

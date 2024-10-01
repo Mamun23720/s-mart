@@ -19,11 +19,11 @@
 
                 <div class="form-group">
                     <label for="categoryName">Category Name</label>
-                    <input type="text" id="categoryName" name="categoryName" placeholder="Enter Category Name" value="{{$cat->name}}" required>
+                    <input type="text" id="categoryName" name="categoryName" value="{{$cat->cat_name}}" required>
                 </div>
 
                 <button type="submit" class="submit-btn">Update Category</button>
-                
+
             </form>
 
         </div>

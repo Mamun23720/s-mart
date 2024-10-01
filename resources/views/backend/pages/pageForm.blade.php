@@ -19,7 +19,7 @@
 
                 <div class="form-group">
                     <label for="pagePosition">Page Position</label>
-                    <input style="border: 1px solid black; width: 352px; height: 40px; border-radius: 5px;" type="number" name="pagePosition"  required>
+                    <input style="border: 1px solid black; width: 300px; height: 40px; border-radius: 5px;" type="number" name="pagePosition"  required>
                 </div>
 
                 <div class="form-group">
@@ -43,7 +43,7 @@
                 </div>
 
                 <button type="submit" class="submit-btn">Add Page</button>
-                
+
             </form>
 
         </div>
