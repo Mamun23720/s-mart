@@ -2,28 +2,27 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Product;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Validator;
-use Throwable;
 
-class CategoryController extends Controller
+class ProductController extends Controller
 {
-    public function categoryList()
+
+    public function productList()
     {
-        $allCategory = Category::with('parent')->get();
+        $allCategory = Product::with('parent')->get();
 
         return view('backend.categoryList', compact('allCategory'));
     }
 
-    public function categoryForm()
+    public function productForm()
     {
         $allCategory = Category::all();
 
         return view('backend.pages.categoryForm', compact('allCategory'));
     }
 
-    public function categoryStore(Request $request)
+    public function productStore(Request $request)
     {
 
         // dd($request->all());
@@ -67,14 +66,14 @@ class CategoryController extends Controller
 
     }
 
-    public function categoryEdit($catID)
+    public function productEdit($catID)
     {
         $cat = Category::find($catID);
 
         return view('backend.pages.categoryEdit', compact('cat'));
     }
 
-    public function categoryUpdate(Request $request, $catID)
+    public function productUpdate(Request $request, $catID)
 
     {
         $fileName = null;
@@ -99,7 +98,7 @@ class CategoryController extends Controller
         return redirect()->route('backend.category.list');
     }
 
-    public function categoryDelete($catID)
+    public function productDelete($catID)
     {
         $deleteCategory = Category::find($catID);
 
@@ -109,5 +108,4 @@ class CategoryController extends Controller
 
         return redirect()->back();
     }
-
 }

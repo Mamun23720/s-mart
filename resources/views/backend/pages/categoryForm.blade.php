@@ -23,12 +23,32 @@
                 </div>
 
                 <div class="form-group">
+                    <label for="categoryName">Category Slug</label>
+                    <input style="border: 1px solid black;"  type="text" id="categorySlug" name="categorySlug" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cars">Parent Name</label>
+                        <select style="border: 1px solid black; width: 300px; height: 40px; border-radius: 5px;" name="parentName" id="parentName">
+                            <option selected value="">Select a category</option>
+                                @foreach ($allCategory as $category)
+                                @if (empty($category->id))
+                                    <option value=""></option>
+                                @else
+                                    <option value="{{$category->id}}">{{$category->cat_name}}</option>
+                                @endif
+                            @endforeach
+
+                        </select>
+                    </div>
+
+                <div class="form-group">
                     <label for="categoryImage">Category Image</label>
                     <input style="border: 1px solid black;"  type="file" id="categoryImage" name="categoryImage">
                 </div>
 
                 <button type="submit" class="submit-btn">Add Category</button>
-                
+
             </form>
 
         </div>
