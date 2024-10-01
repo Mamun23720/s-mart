@@ -53,8 +53,8 @@
             </li>
 
             <li class="nav-item">
-                <a href="{{route('backend.category.list')}}" class="nav-link">
-                        <i class="nav-icon fas fa-copy"></i>
+                <a href="{{route('backend.product.list')}}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-box"></i>
                     <p>
                         Product
                         {{-- <i class="fas fa-angle-left right"></i> --}}
@@ -67,7 +67,7 @@
 
             <li class="nav-item">
                 <a class="nav-link">
-                    <i class="nav-icon fas fa-copy"></i>
+                    <i class="nav-icon fa-solid fa-gear"></i>
                     <p>
                     Settings
                         <i class="fas fa-angle-left right"></i>
@@ -82,7 +82,7 @@
                         </a>
                     </li>
                     <li class="nav-item">
-                        <a href="#" class="nav-link">
+                        <a href="{{route('backend.website.list')}}" class="nav-link">
                             <i class="far fa-circle nav-icon"></i>
                             <p>Website Setting</p>
                         </a>

@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function categoryForm()
     {
-        $allCategory = Category::all();
+        $allCategory = Category::all(); 
 
         return view('backend.pages.categoryForm', compact('allCategory'));
     }
@@ -31,7 +31,6 @@ class CategoryController extends Controller
         [
             'categoryName' => 'required | min:2',
             'categoryImage' => 'file',
-            'categorySlug' => 'required'
         ]);
 
         $fileName = null;
@@ -59,7 +58,7 @@ class CategoryController extends Controller
 
         catch(Throwable $e)
         {
-        toastr()->success('Something Went Wrong');
+        toastr()->error('Something Went Wrong');
 
         return redirect()->route('backend.category.list');
         }
@@ -67,17 +66,21 @@ class CategoryController extends Controller
 
     }
 
-    public function categoryEdit($catID)
+    public function categoryEdit($id)
     {
-        $cat = Category::find($catID);
+        $cat = Category::find($id);
 
         return view('backend.pages.categoryEdit', compact('cat'));
     }
 
-    public function categoryUpdate(Request $request, $catID)
+    public function categoryUpdate(Request $request, $id)
 
     {
-        $fileName = null;
+
+        $category = Category::find($id);
+
+        
+        $fileName = $category->cat_image;
 
         if($request->hasFile('categoryImage'))
         {
@@ -86,11 +89,10 @@ class CategoryController extends Controller
             $file->storeAs('category', $fileName);
         }
 
-        $category = Category::find($catID);
-
         $category->update([
 
             'cat_name' => $request->categoryName,
+            'cat_image' => $fileName,
 
         ]);
 
@@ -99,9 +101,9 @@ class CategoryController extends Controller
         return redirect()->route('backend.category.list');
     }
 
-    public function categoryDelete($catID)
+    public function categoryDelete($id)
     {
-        $deleteCategory = Category::find($catID);
+        $deleteCategory = Category::find($id);
 
         $deleteCategory->delete();
 

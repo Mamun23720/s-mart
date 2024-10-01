@@ -2,110 +2,150 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
+use Throwable;
 
 class ProductController extends Controller
 {
 
     public function productList()
     {
-        $allCategory = Product::with('parent')->get();
+        $allProduct = Product::with('category')->get();
 
-        return view('backend.categoryList', compact('allCategory'));
+        return view('backend.productList', compact('allProduct'));
     }
 
     public function productForm()
     {
-        $allCategory = Category::all();
+        $allProduct = Product::all();
 
-        return view('backend.pages.categoryForm', compact('allCategory'));
+        $allCategory = Category::with('parent')->get();
+
+        return view('backend.pages.productForm', compact('allProduct', 'allCategory'));
     }
 
     public function productStore(Request $request)
     {
 
         // dd($request->all());
+
         $validation= Validator::make($request->all(),
-        [
-            'categoryName' => 'required | min:2',
-            'categoryImage' => 'file',
-            'categorySlug' => 'required'
+ [
+            'productName' => 'required | min:2',
+            'productSlug' => 'required | min:2',
+            'productPrice' => 'required',
+            'productStock' => 'required',
+            'productCategory' => 'required',
+            'productImage' => 'file',
         ]);
 
         $fileName = null;
 
-        if($request->hasFile('categoryImage'))
+        if($request->hasFile('productImage'))
         {
-            $file = $request->file('categoryImage');
+            $file = $request->file('productImage');
             $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('category', $fileName);
+            $file->storeAs('product', $fileName);
         }
 
         try
         {
-        Category::create([
-            'cat_name' => $request->categoryName,
-            'cat_image' => $fileName,
-            'parent_id' => $request->parentName,
-            'cat_slug' => str()->slug($request->categoryName),
+        Product::create([
+            'name' => $request->productName,
+            'cat_id' => $request->productCategory,
+            'slug' => str()->slug($request->productName),
+            'price' => $request->productPrice,
+            'discount' => $request->productDiscount,
+            'stock' => $request->productStock,
+            'description' => $request->productDescription,
+            'image' => $fileName,
+            'status' => $request->productStatus,
         ]);
 
-        toastr()->success('Category Added Succesfully !!');
+        toastr()->success('Product Added Succesfully !!');
 
-        return redirect()->route('backend.category.list');
+        return redirect()->route('backend.product.list');
         }
 
         catch(Throwable $e)
         {
-        toastr()->success('Something Went Wrong');
+        toastr()->error('Something Went Wrong');
 
-        return redirect()->route('backend.category.list');
+        return redirect()->route('backend.product.list');
         }
-
 
     }
 
-    public function productEdit($catID)
+    public function productEdit($id)
     {
-        $cat = Category::find($catID);
+        $prod = Product::find($id);
 
-        return view('backend.pages.categoryEdit', compact('cat'));
+        return view('backend.pages.productEdit', compact('prod'));
     }
 
-    public function productUpdate(Request $request, $catID)
+    public function productUpdate(Request $request, $id)
 
     {
-        $fileName = null;
-
-        if($request->hasFile('categoryImage'))
-        {
-            $file = $request->file('categoryImage');
-            $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('category', $fileName);
-        }
-
-        $category = Category::find($catID);
-
-        $category->update([
-
-            'cat_name' => $request->categoryName,
-
+        
+        $validation= Validator::make($request->all(),
+ [
+            'productName' => 'required | min:2',
+            'productPrice' => 'required',
+            'productImage' => 'file',
         ]);
 
-        toastr()->success('Category Updated Succesfully !!');
+        $product = Product::find($id);
 
-        return redirect()->route('backend.category.list');
+        $fileName = $product->image;
+
+        if($request->hasFile('productImage'))
+        {
+            $file = $request->file('productImage');
+            $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('product', $fileName);
+        }
+
+        try
+        {
+        $product->update([
+
+            'name' => $request->productName,
+            // 'cat_id' => $request->productCategory,
+            // 'slug' => str()->slug($request->productSlug),
+            'price' => $request->productPrice,
+            'discount' => $request->productDiscount,
+            'stock' => $request->productStock,
+            'description' => $request->productDescription,
+            'image' => $fileName,
+            'status' => $request->productStatus,
+            
+        ]);
+
+        toastr()->success('Product Updated Succesfully !!');
+
+        return redirect()->route('backend.product.list');
+        }
+
+        catch(Throwable $e)
+        {
+        toastr()->error('Something Went Wrong');
+
+        return redirect()->route('backend.product.list');
+        }
     }
 
-    public function productDelete($catID)
+    public function productDelete($id)
     {
-        $deleteCategory = Category::find($catID);
+        $deleteProduct = Product::find($id);
 
-        $deleteCategory->delete();
+        $deleteProduct->delete();
 
-        toastr()->success('Category Removed Succesfully !!');
+        toastr()->success('Product Removed Succesfully !!');
 
         return redirect()->back();
     }
+
 }

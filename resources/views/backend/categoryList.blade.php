@@ -121,6 +121,7 @@
             <th>Category Name</th>
             <th>Parent Name</th>
             <th>Category Slug</th>
+            <!-- <th style="text-align: start;" >Image</th> -->
             <th>Action</th>
         </tr>
     </thead>
@@ -134,9 +135,9 @@
             <td>{{optional($cat->parent)->cat_name}}</td>
             <td>{{$cat->cat_slug}}</td>
             {{-- <td>{{is_null($cat->parent) ? '' : $cat->parent->cat_name}}</td> --}}
-            {{-- <td>
+            <!-- <td>
                 <img src="{{ url('/uploads/category/' . $cat->cat_image) }}" alt="{{$cat->cat_name}}" >
-            </td> --}}
+            </td> -->
             <td>
                 <!-- Edit -->
                 <a href="{{ route('backend.category.edit', $cat->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>

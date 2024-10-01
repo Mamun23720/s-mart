@@ -19,7 +19,7 @@
 
                 <div class="form-group">
                     <label for="pagePosition">Page Position</label>
-                    <input style="border: 1px solid black; width: 300px; height: 40px; border-radius: 5px;" type="number" name="pagePosition"  required>
+                    <input style="border: 1px solid black; width: 100%; height: 40px; border-radius: 5px;" type="number" name="pagePosition"  required>
                 </div>
 
                 <div class="form-group">
@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="form-group">
-                    <label for="pageImage">Category Image</label>
+                    <label for="pageImage">Page Image</label>
                     <input  style="border: 1px solid black;" type="file" name="pageImage">
                 </div>
 

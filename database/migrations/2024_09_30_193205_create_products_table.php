@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->integer('cat_id');
             $table->string('name');
+            $table->string('slug')->unique();
             $table->string('price');
             $table->string('discount')->nullable();
             $table->string('stock')->nullable();

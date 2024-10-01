@@ -22,6 +22,11 @@
                     <input type="text" id="categoryName" name="categoryName" value="{{$cat->cat_name}}" required>
                 </div>
 
+                <div class="form-group">
+                    <label for="categoryImage">Category Image</label>
+                    <input type="file" id="categoryName" name="categoryImage" value="{{$cat->cat_image}}">
+                </div>
+
                 <button type="submit" class="submit-btn">Update Category</button>
 
             </form>

@@ -68,16 +68,16 @@ class PageController extends Controller
     public function pageUpdate(Request $request, $pageID)
 
     {
-        $fileName = null;
-
-        if($request->hasFile('subCategoryImage'))
-        {
-            $file = $request->file('subCategoryImage');
-            $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('subCategory', $fileName);
-        }
-
         $category = Page::find($pageID);
+        
+        $fileName = $category->page_image;
+
+        if($request->hasFile('pageImage'))
+        {
+            $file = $request->file('pageImage');
+            $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
+            $file->storeAs('page', $fileName);
+        }
 
         $category->update([
 
@@ -85,6 +85,7 @@ class PageController extends Controller
             'page_name' => $request->pageName,
             'page_title' => $request->pageTitle,
             'page_description' => $request->pageDescription,
+            'page_image' => $fileName,
 
         ]);
 

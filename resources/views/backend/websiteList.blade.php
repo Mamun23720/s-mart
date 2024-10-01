@@ -41,9 +41,10 @@
         border-radius: 50%;
         object-fit: cover;
         border: 2px solid #ddd;
+        text-align: center;
     }
 
-    
+
     .form-container {
             max-width: 500px;
             margin: 0 auto;
@@ -53,7 +54,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .form-container input[type="text"], 
+        .form-container input[type="text"],
         .form-container input[type="file"] {
             width: 100%;
             padding: 10px;
@@ -100,7 +101,7 @@
 <div class="row">
 
     <div class="col-md-4 mt-3">
-        <h2>Sub Category</h2>
+        <h2>Website</h2>
     </div>
 
     <div class="col-md-4">
@@ -108,9 +109,7 @@
     </div>
 
     <div style="text-align: center;" class="col-md-4 mt-3">
-
-        <a style="background-color: #007bff;" href="{{route('backend.sub.category.form')}}" class="btn btn-primary" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
-  
+        <a style="background-color: #007bff;" href="{{route('backend.website.form')}}" class="btn btn-primary btn-lg" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
     </div>
 
 </div>
@@ -118,28 +117,42 @@
 <table class="table-sm" >
     <thead>
         <tr>
-            <th>ID</th>
-            <th>Sub Category Name</th>
-            <th>Image</th>
-            <th>Main Category Name</th>
+            <th style="text-align: start;" >Logo</th>
+            <th>Name</th>
+            <th>Mobile</th>
+            <th>Helpline</th>
+            <th>Email</th>
+            <th>Address</th>
+            <th>Facebook</th>
+            <th>Twitter</th>
+            <th>Instagram</th>
+            <th>Linkedin</th>
+            <th>Youtube</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($allSubCategory as $key=>$cat)
-            
+        @foreach ($allWebsite as $key=>$website)
+
         <tr>
-            <td>{{ $key + 1 }}</td>
-            <td>{{$cat->sub_name}}</td>
             <td>
-                <img src="{{ url('/uploads/subCategory/' . $cat->sub_image) }}" width="50px" height="50px">
+                <img src="{{ url('/uploads/logo/' . $website->logo) }}" alt="No image" >
             </td>
-            <td>{{$cat->cat_name}}</td>
+            <td>{{$website->name}}</td>
+            <td>{{$website->mobile}}</td>
+            <td>{{$website->helpline}}</td>
+            <td><a href="https://mail.google.com/">OK</a></td>
+            <td>{{$website->address}}</td>
+            <td><a href="{{$website->facebook}}">OK</a></td>
+            <td><a href="{{$website->twitter}}">OK</a></td>
+            <td><a href="{{$website->instagram}}">OK</a></td>
+            <td><a href="{{$website->linkedin}}">OK</a></td>
+            <td><a href="{{$website->youtube}}">OK</a></td>
             <td>
                 <!-- Edit -->
-                <a href="{{ route('backend.sub.category.edit', $cat->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{{ route('backend.website.edit', $website->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
                 <!-- Remove -->
-                <a href="{{route('backend.sub.category.delete', $cat->id)}}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
+                <a href="{{route('backend.website.delete', $website->id)}}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
 

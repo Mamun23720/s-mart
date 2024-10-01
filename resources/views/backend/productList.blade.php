@@ -44,7 +44,7 @@
         text-align: center;
     }
 
-    
+
     .form-container {
             max-width: 500px;
             margin: 0 auto;
@@ -54,7 +54,7 @@
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         }
 
-        .form-container input[type="text"], 
+        .form-container input[type="text"],
         .form-container input[type="file"] {
             width: 100%;
             padding: 10px;
@@ -101,7 +101,7 @@
 <div class="row">
 
     <div class="col-md-4 mt-3">
-        <h2>Page</h2>
+        <h2>Product</h2>
     </div>
 
     <div class="col-md-4">
@@ -109,7 +109,7 @@
     </div>
 
     <div style="text-align: center;" class="col-md-4 mt-3">
-        <a style="background-color: #007bff;" href="{{route('backend.page.form')}}" class="btn btn-primary" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
+        <a style="background-color: #007bff;" href="{{route('backend.product.form')}}" class="btn btn-primary btn-lg" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
     </div>
 
 </div>
@@ -118,31 +118,57 @@
     <thead>
         <tr>
             <th>ID</th>
-            <th>Page Position</th>
-            <th>Page Name</th>
-            <th>Page Title</th>
-            <!-- <th>Page Description</th> -->
+            <th>Product</th>
+            <th>Category</th>
+            <th>Slug</th>
+            <th>Price</th>
+            <th>Discount</th>
+            <th>Stock</th>
+            <th>Description</th>
             <th style="text-align: start;" >Image</th>
+            <th>Status</th>
             <th>Action</th>
         </tr>
     </thead>
     <tbody>
-        @foreach ($allPage as $key=>$page)
-            
+        @foreach ($allProduct as $key=>$prod)
+
         <tr>
             <td>{{ $key + 1 }}</td>
-            <td>{{$page->page_position}}</td>
-            <td>{{$page->page_name}}</td>
-            <td>{{$page->page_title}}</td>
-            <!-- <td>{{$page->page_description}}</td> -->
+            <td>{{$prod->name}}</td>
+
+            <!-- 4 vabei category show kora jai -->
+
             <td>
-                <img src="{{ url('/uploads/page/' . $page->page_image) }}" alt="{{$page->page_name}}" >
+                @if($prod->category)
+                    {{ $prod->category->cat_name }}
+                @else
+                    
+                @endif  
             </td>
+
+            <!-- <td>{{$prod->cat_id}}</td>  -->
+
+            <!-- <td>{{optional(value: $prod->category)->cat_name}}</td>  -->
+
+            <!-- <td>{{is_null($prod->category) ? $prod->cat_id : $prod->category->cat_name}}</td> -->
+
+            <!-- 4 vabei category show kora jai -->
+
+            <td>{{$prod->slug}}</td>
+            <td>{{$prod->price}}</td>
+            <td>{{$prod->discount}}</td>
+            <td>{{$prod->stock}}</td>
+            <td>{{$prod->description}}</td>
+            <td>
+                <img src="{{ url('/uploads/product/' . $prod->image) }}" alt="No image" >
+            </td>
+            <td>{{$prod->status}}</td>
             <td>
                 <!-- Edit -->
-                <a href="{{ route('backend.page.edit', $page->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
+                <a href="{{ route('backend.product.edit', $prod->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
                 <!-- Remove -->
-                <a href="{{route('backend.page.delete', $page->id)}}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
+                <a href="{{route('backend.product.delete', $prod->id)}}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
             </td>
         </tr>
 
