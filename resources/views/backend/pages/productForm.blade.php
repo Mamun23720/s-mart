@@ -68,8 +68,8 @@
                         <div class="form-group">
                             <label for="productStatus">Product Status</label>
                             <select style="border: 1px solid black; width: 100%; height: 40px; border-radius: 5px;" name="productStatus" id="">
-                                <option selected value="active">Active</option>
-                                <option value="inactive">Inactive</option>
+                                <option selected value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
                             </select>
                         </div>
                     </div>

@@ -101,7 +101,7 @@
 <div class="row">
 
     <div class="col-md-4 mt-3">
-        <h2>Product</h2>
+        <b style="font-size: 36px;" >Product</b>
     </div>
 
     <div class="col-md-4">
@@ -156,14 +156,24 @@
             <!-- 4 vabei category show kora jai -->
 
             <td>{{$prod->slug}}</td>
-            <td>{{$prod->price}}</td>
-            <td>{{$prod->discount}}</td>
-            <td>{{$prod->stock}}</td>
+            <td>{{$prod->price}}Tk</td>
+            <td>{{$prod->discount}}%</td>
+
+            @if ($prod->stock<10)
+                <td style="color: red; font-size:24px;"><b>{{$prod->stock}} pc</b></td>
+            @else
+                <td style="font-size:24px;">{{$prod->stock}} pc</td>
+            @endif
+
             <td>{{$prod->description}}</td>
             <td>
                 <img src="{{ url('/uploads/product/' . $prod->image) }}" alt="No image" >
             </td>
-            <td>{{$prod->status}}</td>
+            @if ($prod->status=='Active')
+                <td style="color: green; font-size:20px;"><b>{{$prod->status}}</b></td>
+            @else
+                <td style="color: red;"></td>
+            @endif
             <td>
                 <!-- Edit -->
                 <a href="{{ route('backend.product.edit', $prod->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>

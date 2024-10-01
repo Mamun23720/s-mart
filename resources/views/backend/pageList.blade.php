@@ -101,7 +101,7 @@
 <div class="row">
 
     <div class="col-md-4 mt-3">
-        <h2>Page</h2>
+    <b style="font-size: 36px;" >Page</b>
     </div>
 
     <div class="col-md-4">

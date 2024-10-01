@@ -49,8 +49,8 @@
                         <div class="form-group">
                             <label for="productStatus">Product Status</label>
                             <select style="border: 1px solid black;" name="productStatus" value="{{$prod->status}}">
-                                <option selected value="active">Active</option>
-                                <option value="inactive">Inactive</option>
+                                <option selected value="Active">Active</option>
+                                <option value="Inactive">Inactive</option>
                             </select>
                         </div>
                     </div>

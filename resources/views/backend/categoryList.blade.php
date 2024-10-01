@@ -100,15 +100,11 @@
 
 <div class="row">
 
-    <div class="col-md-4 mt-3">
-        <h2>Category</h2>
+    <div class="col-md-6 mt-3">
+    <b style="font-size: 36px;" >Category</b>
     </div>
 
-    <div class="col-md-4">
-
-    </div>
-
-    <div style="text-align: center;" class="col-md-4 mt-3">
+    <div style="text-align: center;" class="col-md-6 mt-3">
         <a style="background-color: #007bff;" href="{{route('backend.category.form')}}" class="btn btn-primary btn-lg" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
     </div>
 
