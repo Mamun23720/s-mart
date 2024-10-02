@@ -116,8 +116,9 @@
             <th>ID</th>
             <th>Category Name</th>
             <th>Parent Name</th>
-            <th>Category Slug</th>
+            {{-- <th>Category Slug</th> --}}
             <!-- <th style="text-align: start;" >Image</th> -->
+            <th>Status</th>
             <th>Action</th>
         </tr>
     </thead>
@@ -126,14 +127,26 @@
 
         <tr>
             <td>{{ $key + 1 }}</td>
-            <td>{{$cat->cat_name}}</td>
+            <td>{{$cat->name}}</td>
             {{-- <td>{{$cat->parent->cat_name}}</td> --}}
-            <td>{{optional($cat->parent)->cat_name}}</td>
-            <td>{{$cat->cat_slug}}</td>
+            <td>{{optional($cat->parent)->name}}</td>
+            {{-- <td>{{$cat->cat_slug}}</td> --}}
+
             {{-- <td>{{is_null($cat->parent) ? '' : $cat->parent->cat_name}}</td> --}}
             <!-- <td>
-                <img src="{{ url('/uploads/category/' . $cat->cat_image) }}" alt="{{$cat->cat_name}}" >
+                <img src="{{ url('/uploads/category/' . $cat->image) }}" alt="{{$cat->name}}" >
             </td> -->
+
+        @if ($cat->status == 'Active')
+            <td>
+                <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%;"></span>
+            </td>
+        @else
+            <td>
+                <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%;"></span>
+            </td>
+        @endif
+
             <td>
                 <!-- Edit -->
                 <a href="{{ route('backend.category.edit', $cat->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>

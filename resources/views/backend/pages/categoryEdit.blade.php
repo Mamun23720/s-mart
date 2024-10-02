@@ -19,13 +19,22 @@
 
                 <div class="form-group">
                     <label for="categoryName">Category Name</label>
-                    <input type="text" id="categoryName" name="categoryName" value="{{$cat->cat_name}}" required>
+                    <input type="text" id="categoryName" name="categoryName" value="{{$cat->name}}" required>
                 </div>
 
                 <div class="form-group">
                     <label for="categoryImage">Category Image</label>
-                    <input type="file" id="categoryName" name="categoryImage" value="{{$cat->cat_image}}">
+                    <input type="file" id="categoryName" name="categoryImage" value="{{$cat->image}}">
                 </div>
+
+                <div class="form-group">
+                    <label for="categoryStatus">Category Status</label>
+                    <select style="border: 1px solid black; width: 100%; height: 40px; border-radius: 5px;" value="{{$cat->status}}" name="categoryStatus" id="">
+                        <option selected value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
+                </div>
+
 
                 <button type="submit" class="submit-btn">Update Category</button>
 

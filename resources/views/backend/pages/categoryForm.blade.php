@@ -21,11 +21,6 @@
                     <label for="categoryName">Category Name</label>
                     <input style="border: 1px solid black;"  type="text" id="categoryName" name="categoryName" required>
                 </div>
-<!-- 
-                <div class="form-group">
-                    <label for="categoryName">Category Slug</label>
-                    <input style="border: 1px solid black;"  type="text" id="categorySlug" name="categorySlug">
-                </div> -->
 
                 <div class="form-group">
                     <label for="cars">Parent Name</label>
@@ -35,7 +30,7 @@
                                 @if (empty($category->id))
                                     <option value=""></option>
                                 @else
-                                    <option value="{{$category->id}}">{{$category->cat_name}}</option>
+                                    <option value="{{$category->id}}">{{$category->name}}</option>
                                 @endif
                             @endforeach
 
@@ -45,6 +40,14 @@
                 <div class="form-group">
                     <label for="categoryImage">Category Image</label>
                     <input style="border: 1px solid black;"  type="file" id="categoryImage" name="categoryImage">
+                </div>
+
+                <div class="form-group">
+                    <label for="categoryStatus">Category Status</label>
+                    <select style="border: 1px solid black; width: 100%; height: 40px; border-radius: 5px;" name="categoryStatus" id="">
+                        <option selected value="Active">Active</option>
+                        <option value="Inactive">Inactive</option>
+                    </select>
                 </div>
 
                 <button type="submit" class="submit-btn">Add Category</button>

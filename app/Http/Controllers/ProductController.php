@@ -55,7 +55,7 @@ class ProductController extends Controller
         {
         Product::create([
             'name' => $request->productName,
-            'cat_id' => $request->productCategory,
+            'category_id' => $request->productCategory,
             'slug' => str()->slug($request->productName),
             'price' => $request->productPrice,
             'discount' => $request->productDiscount,
@@ -89,7 +89,7 @@ class ProductController extends Controller
     public function productUpdate(Request $request, $id)
 
     {
-        
+
         $validation= Validator::make($request->all(),
  [
             'productName' => 'required | min:2',
@@ -113,7 +113,7 @@ class ProductController extends Controller
         $product->update([
 
             'name' => $request->productName,
-            // 'cat_id' => $request->productCategory,
+            // 'category_id' => $request->productCategory,
             // 'slug' => str()->slug($request->productSlug),
             'price' => $request->productPrice,
             'discount' => $request->productDiscount,
@@ -121,7 +121,7 @@ class ProductController extends Controller
             'description' => $request->productDescription,
             'image' => $fileName,
             'status' => $request->productStatus,
-            
+
         ]);
 
         toastr()->success('Product Updated Succesfully !!');

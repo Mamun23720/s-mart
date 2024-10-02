@@ -100,7 +100,7 @@
     <div class="row">
 
         <div class="col-md-4 mt-3">
-            <b style="font-size: 36px;">Product</b>
+            <b style="font-size: 36px;">Brand</b>
         </div>
 
         <div class="col-md-4">
@@ -108,7 +108,7 @@
         </div>
 
         <div style="text-align: center;" class="col-md-4 mt-3">
-            <a style="background-color: #007bff;" href="{{ route('backend.product.form') }}"
+            <a style="background-color: #007bff;" href="{{ route('backend.brand.form') }}"
                 class="btn btn-primary btn-lg"><b>Add New <i class="fa-solid fa-plus"></i> </b></a>
         </div>
 
@@ -118,74 +118,39 @@
         <thead>
             <tr>
                 <th>ID</th>
-                <th>Product</th>
-                <th>Category</th>
+                <th style="text-align: start;">Logo</th>
                 <th>Brand</th>
-                {{-- <th>Slug</th> --}}
-                <th>Price</th>
-                <th>Discount</th>
-                <th>Stock</th>
-                {{-- <th>Description</th> --}}
-                <th style="text-align: start;">Image</th>
+                <th>Description</th>
                 <th>Status</th>
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
-            @foreach ($allProduct as $key => $prod)
+            @foreach ($allBrand as $key => $brand)
                 <tr>
                     <td>{{ $key + 1 }}</td>
-                    <td>{{ $prod->name }}</td>
-
-                    <!-- 4 vabei category show kora jai -->
-
-                    <td>{{ optional(value: $prod->category)->name }}</td>
-
-                    <!-- <td>{{ is_null($prod->category) ? $prod->category_id : $prod->category->name }}</td> -->
-
-                    {{-- <td>
-                        @if ($prod->category->cat_id)
-                                {{ $prod->category->name }}
-                        @else
-                                            0
-                        @endif
-                    </td> --}}
-
-
-                    <!-- 4 vabei category show kora jai -->
-
-                    {{-- <td>{{ $prod->slug }}</td> --}}
-                    <td>Tommy</td>
-                    <td>{{ $prod->price }}Tk</td>
-                    <td>{{ $prod->discount }}%</td>
-
-                    @if ($prod->stock < 10)
-                        <td style="color: red; font-size:24px;"><b>{{ $prod->stock }} pc</b></td>
-                    @else
-                        <td style="font-size:24px;">{{ $prod->stock }} pc</td>
-                    @endif
-
-                    {{-- <td>{{ $prod->description }}</td> --}}
                     <td>
-                        <img src="{{ url('/uploads/product/' . $prod->image) }}" alt="No image">
+                        <img src="{{ url('/uploads/brand/' . $brand->logo) }}" alt="No logo">
                     </td>
+                    <td>{{ $brand->name }}</td>
+                    <td>{{ $brand->description }}</td>
 
-                    @if ($prod->status == 'Active')
-                        <td>
-                            <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%;"></span>
-                        </td>
-                    @else
-                        <td>
-                            <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%;"></span>
-                        </td>
-                    @endif
+                @if ($brand->status == 'Active')
+                    <td>
+                        <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%;"></span>
+                    </td>
+                @else
+                    <td>
+                        <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%;"></span>
+                    </td>
+                @endif
 
                     <td>
                         <!-- Edit -->
-                        <a href="{{ route('backend.product.edit', $prod->id) }}" class="btn btn-info ml-2"><i
+                        <a href="{{ route('backend.brand.edit', $brand->id) }}" class="btn btn-info ml-2"><i
                                 class="fa-solid fa-pen-to-square"></i></a>
                         <!-- Remove -->
-                        <a href="{{ route('backend.product.delete', $prod->id) }}" class="btn btn-danger ml-2"><i
+                        <a href="{{ route('backend.brand.delete', $brand->id) }}" class="btn btn-danger ml-2"><i
                                 class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>

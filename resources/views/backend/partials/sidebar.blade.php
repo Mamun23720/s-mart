@@ -53,6 +53,17 @@
             </li>
 
             <li class="nav-item">
+                <a href="{{route('backend.brand.list')}}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-flag"></i>
+                    <p>
+                        Brand
+                        {{-- <i class="fas fa-angle-left right"></i> --}}
+                        <!-- <span class="badge badge-info right">6</span> -->
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
                 <a href="{{route('backend.product.list')}}" class="nav-link">
                         <i class="nav-icon fa-solid fa-box"></i>
                     <p>

@@ -18,7 +18,7 @@ class CategoryController extends Controller
 
     public function categoryForm()
     {
-        $allCategory = Category::all(); 
+        $allCategory = Category::all();
 
         return view('backend.pages.categoryForm', compact('allCategory'));
     }
@@ -45,10 +45,11 @@ class CategoryController extends Controller
         try
         {
         Category::create([
-            'cat_name' => $request->categoryName,
-            'cat_image' => $fileName,
+            'name' => $request->categoryName,
+            'image' => $fileName,
             'parent_id' => $request->parentName,
-            'cat_slug' => str()->slug($request->categoryName),
+            // 'slug' => str()->slug($request->categoryName),
+            'status' => $request->categoryStatus,
         ]);
 
         toastr()->success('Category Added Succesfully !!');
@@ -79,8 +80,8 @@ class CategoryController extends Controller
 
         $category = Category::find($id);
 
-        
-        $fileName = $category->cat_image;
+
+        $fileName = $category->image;
 
         if($request->hasFile('categoryImage'))
         {
@@ -91,8 +92,11 @@ class CategoryController extends Controller
 
         $category->update([
 
-            'cat_name' => $request->categoryName,
-            'cat_image' => $fileName,
+            'name' => $request->categoryName,
+            'image' => $fileName,
+            'parent_id' => $request->parentName,
+            // 'cat_slug' => str()->slug($request->categoryName),
+            'status' => $request->categoryStatus,
 
         ]);
 

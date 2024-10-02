@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthenticationController;
+use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\PageController;
@@ -27,6 +28,15 @@ Route::group(['prefix' => 'admin'], function () {
                         Route::get('/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('backend.category.edit');
                         Route::post('/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('backend.category.update');
                         Route::get('/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('backend.category.delete');
+                    });
+
+                    Route::group(['prefix' => 'brand'], function () {
+                        Route::get('/list', [BrandController::class, 'brandList'])->name('backend.brand.list');
+                        Route::get('/form', [BrandController::class, 'brandForm'])->name('backend.brand.form');
+                        Route::post('/store', [BrandController::class, 'brandStore'])->name('backend.brand.store');
+                        Route::get('/edit/{id}', [BrandController::class, 'brandEdit'])->name('backend.brand.edit');
+                        Route::post('/update/{id}', [BrandController::class, 'brandUpdate'])->name('backend.brand.update');
+                        Route::get('/delete/{id}', [BrandController::class, 'brandDelete'])->name('backend.brand.delete');
                     });
 
                     Route::group(['prefix' => 'product'], function () {

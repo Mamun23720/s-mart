@@ -21,8 +21,11 @@
                     </div>
                 </div>
             </div>
+
+
+
             
-            
+
                 <div class="container-fluid">
 
                     <div class="row">
@@ -85,6 +88,16 @@
                     </div>
 
 
+
+
+
+
+
+
+
+
+
+{{--
                     <div class="row">
 
                         <section class="col-lg-7 connectedSortable">
@@ -572,6 +585,6 @@
 
                 </div>
 
-
+ --}}
 
 @endsection
