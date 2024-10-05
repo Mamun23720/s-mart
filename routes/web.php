@@ -20,7 +20,7 @@ Route::get('/', [HomeController::class, 'home'])->name('frontend.home');
 
 
 
-//mahmud vai
+
 //frontend
 //admin prefix add
 
