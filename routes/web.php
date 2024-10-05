@@ -4,6 +4,7 @@ use App\Http\Controllers\AuthenticationController;
 use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SettingController;
@@ -11,6 +12,16 @@ use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
+
+
+
+Route::get('/', [HomeController::class, 'home'])->name('frontend.home');
+
+
+
+
+
+//frontend
 //admin prefix add
 
 Route::group(['prefix' => 'admin'], function () {
@@ -49,14 +60,7 @@ Route::group(['prefix' => 'admin'], function () {
                     });
 
                 Route::group(['prefix' => 'settings'], function () {
-                    Route::group(['prefix' => 'seo'], function () {
-                        // Route::get('/list', [SettingController::class, 'categoryList'])->name('backend.category.list');
-                        // Route::get('/form', [SettingController::class, 'categoryForm'])->name('backend.category.form');
-                        // Route::post('/store', [SettingController::class, 'categoryStore'])->name('backend.category.store');
-                        // Route::get('/edit/{id}', [SettingController::class, 'categoryEdit'])->name('backend.category.edit');
-                        // Route::post('/update/{id}', [SettingController::class, 'categoryUpdate'])->name('backend.category.update');
-                        // Route::get('/delete/{id}', [SettingController::class, 'categoryDelete'])->name('backend.category.delete');
-                    });
+
                     Route::group(['prefix' => 'website'], function () {
                         Route::get('/list', [WebsiteController::class, 'websiteList'])->name('backend.website.list');
                         Route::get('/form', [WebsiteController::class, 'websiteForm'])->name('backend.website.form');
@@ -65,6 +69,7 @@ Route::group(['prefix' => 'admin'], function () {
                         Route::post('/update/{id}', [WebsiteController::class, 'websiteUpdate'])->name('backend.website.update');
                         Route::get('/delete/{id}', [WebsiteController::class, 'websiteDelete'])->name('backend.website.delete');
                     });
+
                     Route::group(['prefix' => 'page'], function () {
                         Route::get('/list', [PageController::class, 'pageList'])->name('backend.page.list');
                         Route::get('/form', [PageController::class, 'pageForm'])->name('backend.page.form');
@@ -73,22 +78,7 @@ Route::group(['prefix' => 'admin'], function () {
                         Route::post('/update/{id}', [PageController::class, 'pageUpdate'])->name('backend.page.update');
                         Route::get('/delete/{id}', [PageController::class, 'pageDelete'])->name('backend.page.delete');
                     });
-                    Route::group(['prefix' => 'smtp'], function () {
-                        // Route::get('/list', [SettingController::class, 'categoryList'])->name('backend.category.list');
-                        // Route::get('/form', [SettingController::class, 'categoryForm'])->name('backend.category.form');
-                        // Route::post('/store', [SettingController::class, 'categoryStore'])->name('backend.category.store');
-                        // Route::get('/edit/{id}', [SettingController::class, 'categoryEdit'])->name('backend.category.edit');
-                        // Route::post('/update/{id}', [SettingController::class, 'categoryUpdate'])->name('backend.category.update');
-                        // Route::get('/delete/{id}', [SettingController::class, 'categoryDelete'])->name('backend.category.delete');
-                    });
-                    Route::group(['prefix' => 'paymentgateway'], function () {
-                        // Route::get('/list', [SettingController::class, 'categoryList'])->name('backend.category.list');
-                        // Route::get('/form', [SettingController::class, 'categoryForm'])->name('backend.category.form');
-                        // Route::post('/store', [SettingController::class, 'categoryStore'])->name('backend.category.store');
-                        // Route::get('/edit/{id}', [SettingController::class, 'categoryEdit'])->name('backend.category.edit');
-                        // Route::post('/update/{id}', [SettingController::class, 'categoryUpdate'])->name('backend.category.update');
-                        // Route::get('/delete/{id}', [SettingController::class, 'categoryDelete'])->name('backend.category.delete');
-                    });
+
                 });
         });
 });

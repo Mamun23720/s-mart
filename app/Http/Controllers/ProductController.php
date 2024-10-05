@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -13,7 +14,9 @@ class ProductController extends Controller
 
     public function productList()
     {
-        $allProduct = Product::with('category')->get();
+        $allProduct = Product::with('category', 'brand')->get();
+
+        // $allProduct = Product::with('brand')->get();
 
         return view('backend.productList', compact('allProduct'));
     }
@@ -21,10 +24,11 @@ class ProductController extends Controller
     public function productForm()
     {
         $allProduct = Product::all();
+        $allProd = Brand::all();
 
         $allCategory = Category::with('parent')->get();
 
-        return view('backend.pages.productForm', compact('allProduct', 'allCategory'));
+        return view('backend.pages.productForm', compact('allProduct', 'allCategory', 'allProd'));
     }
 
     public function productStore(Request $request)
@@ -56,6 +60,7 @@ class ProductController extends Controller
         Product::create([
             'name' => $request->productName,
             'category_id' => $request->productCategory,
+            'brand_id' => $request->productBrand,
             'slug' => str()->slug($request->productName),
             'price' => $request->productPrice,
             'discount' => $request->productDiscount,
@@ -114,6 +119,7 @@ class ProductController extends Controller
 
             'name' => $request->productName,
             // 'category_id' => $request->productCategory,
+            // 'brand_id' => $request->productBrand,
             // 'slug' => str()->slug($request->productSlug),
             'price' => $request->productPrice,
             'discount' => $request->productDiscount,

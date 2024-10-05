@@ -41,6 +41,22 @@
                                 <input style="border: 1px solid black; width: 100%; height: 40px; border-radius: 5px;"
                                     type="number" name="productStock" required>
                             </div>
+
+                            <div class="form-group">
+                                <label for="cars">Brand Name</label>
+                                <select style="border: 1px solid black; width: 100%; height: 40px; border-radius: 5px;"
+                                    name="productBrand" id="">
+                                    <option selected value="">Select a brand</option>
+                                    @foreach ($allProd as $brand)
+                                        @if (empty($brand->id))
+                                            <option value=""></option>
+                                        @else
+                                            <option value="{{ $brand->id }}">{{ $brand->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select>
+                            </div>
+
                         </div>
 
                         <!-- Right Column -->

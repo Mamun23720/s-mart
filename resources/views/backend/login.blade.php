@@ -80,7 +80,7 @@
 <body>
     @include('notify::components.notify')
     <div class="login-container">
-        <h2>S-Shop</h2>
+        <h2>S-Mart</h2>
         <form action="{{ route('do.login') }}" method="post">
             @csrf
             <label for="username">Username</label>

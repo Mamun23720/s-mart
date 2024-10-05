@@ -137,15 +137,17 @@
                 <img src="{{ url('/uploads/category/' . $cat->image) }}" alt="{{$cat->name}}" >
             </td> -->
 
-        @if ($cat->status == 'Active')
             <td>
-                <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%;"></span>
+                @if ($cat->status == 'Active')
+                    <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%; text-align: center; line-height: 30px;">
+                        <i class="fas fa-thumbs-up" style="color: white;"></i>
+                    </span>
+                @else
+                    <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%; text-align: center; line-height: 30px;">
+                        <i class="fas fa-thumbs-down" style="color: white;"></i>
+                    </span>
+                @endif
             </td>
-        @else
-            <td>
-                <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%;"></span>
-            </td>
-        @endif
 
             <td>
                 <!-- Edit -->
