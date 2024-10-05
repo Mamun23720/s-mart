@@ -139,7 +139,6 @@
 
                     <!-- 4 vabei category show kora jai -->
 
-                    <td>{{ optional(value: $prod->category)->name }}</td>
 
                     <!-- <td>{{ is_null($prod->category) ? $prod->category_id : $prod->category->name }}</td> -->
 
@@ -155,7 +154,13 @@
                     <!-- 4 vabei category show kora jai -->
 
                     {{-- <td>{{ $prod->slug }}</td> --}}
-                    <td>Tommy</td>
+
+
+                    <td>{{ optional(value: $prod->category)->name }}</td>
+
+                    <td>{{ optional(value: $prod->brand)->name }}</td>
+
+
                     <td>{{ $prod->price }}Tk</td>
                     <td>{{ $prod->discount }}%</td>
 
@@ -170,15 +175,17 @@
                         <img src="{{ url('/uploads/product/' . $prod->image) }}" alt="No image">
                     </td>
 
-                    @if ($prod->status == 'Active')
-                        <td>
-                            <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%;"></span>
-                        </td>
-                    @else
-                        <td>
-                            <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%;"></span>
-                        </td>
-                    @endif
+                    <td>
+                        @if ($prod->status == 'Active')
+                            <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%; text-align: center; line-height: 30px;">
+                                <i class="fas fa-thumbs-up" style="color: white;"></i>
+                            </span>
+                        @else
+                            <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%; text-align: center; line-height: 30px;">
+                                <i class="fas fa-thumbs-down" style="color: white;"></i>
+                            </span>
+                        @endif
+                    </td>
 
                     <td>
                         <!-- Edit -->

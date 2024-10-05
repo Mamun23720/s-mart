@@ -135,15 +135,17 @@
                     <td>{{ $brand->name }}</td>
                     <td>{{ $brand->description }}</td>
 
-                @if ($brand->status == 'Active')
                     <td>
-                        <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%;"></span>
+                        @if ($brand->status == 'Active')
+                            <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%; text-align: center; line-height: 30px;">
+                                <i class="fas fa-thumbs-up" style="color: white;"></i>
+                            </span>
+                        @else
+                            <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%; text-align: center; line-height: 30px;">
+                                <i class="fas fa-thumbs-down" style="color: white;"></i>
+                            </span>
+                        @endif
                     </td>
-                @else
-                    <td>
-                        <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%;"></span>
-                    </td>
-                @endif
 
                     <td>
                         <!-- Edit -->
