@@ -120,6 +120,31 @@
             </li>
 
 
+            <li class="nav-item">
+                <a href="{{route('backend.role.list')}}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-user"></i>
+                    <p>
+                        Role
+                        {{-- <i class="fas fa-angle-left right"></i> --}}
+                        <!-- <span class="badge badge-info right">6</span> -->
+                    </p>
+                </a>
+            </li>
+
+
+            <li class="nav-item">
+                <a href="{{route('backend.user.list')}}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-users"></i>
+                    <p>
+                        User's
+                        {{-- <i class="fas fa-angle-left right"></i> --}}
+                        <!-- <span class="badge badge-info right">6</span> -->
+                    </p>
+                </a>
+            </li>
+
+
+
 
 
             <!-- Many item is here -->

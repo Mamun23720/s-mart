@@ -7,6 +7,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\RoleController;
 use App\Http\Controllers\SettingController;
 use App\Http\Controllers\SubCategoryController;
 use App\Http\Controllers\WebsiteController;
@@ -80,5 +81,24 @@ Route::group(['prefix' => 'admin'], function () {
                     });
 
                 });
+
+                Route::group(['prefix' => 'role'], function () {
+                    Route::get('/list', [RoleController::class, 'roleList'])->name('backend.role.list');
+                    Route::get('/form', [RoleController::class, 'roleForm'])->name('backend.role.form');
+                    Route::post('/store', [RoleController::class, 'roleStore'])->name('backend.role.store');
+                    Route::get('/edit/{id}', [RoleController::class, 'roleEdit'])->name('backend.role.edit');
+                    Route::post('/update/{id}', [RoleController::class, 'roleUpdate'])->name('backend.role.update');
+                    Route::get('/delete/{id}', [RoleController::class, 'roleDelete'])->name('backend.role.delete');
+                });
+
+                Route::group(['prefix' => 'user'], function () {
+                    Route::get('/list', [AuthenticationController::class, 'userList'])->name('backend.user.list');
+                    Route::get('/form', [AuthenticationController::class, 'userForm'])->name('backend.user.form');
+                    Route::post('/store', [AuthenticationController::class, 'userStore'])->name('backend.user.store');
+                    Route::get('/edit/{id}', [AuthenticationController::class, 'userEdit'])->name('backend.user.edit');
+                    Route::post('/update/{id}', [AuthenticationController::class, 'userUpdate'])->name('backend.user.update');
+                    Route::get('/delete/{id}', [AuthenticationController::class, 'userDelete'])->name('backend.user.delete');
+                });
+
         });
 });
