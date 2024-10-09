@@ -143,12 +143,12 @@
                     </td>
 
                     <td>
+                        <!-- Role Permission -->
+                        <a href="{{ route('backend.role.permission', $role->id) }}" class="btn btn-warning ml-2"><i class="fa-solid fa-square-check"></i></a>
                         <!-- Edit -->
-                        <a href="{{ route('backend.role.edit', $role->id) }}" class="btn btn-info ml-2"><i
-                                class="fa-solid fa-pen-to-square"></i></a>
+                        <a href="{{ route('backend.role.edit', $role->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
                         <!-- Remove -->
-                        <a href="{{ route('backend.role.delete', $role->id) }}" class="btn btn-danger ml-2"><i
-                                class="fa-solid fa-trash"></i></a>
+                        <a href="{{ route('backend.role.delete', $role->id) }}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
                     </td>
                 </tr>
             @endforeach

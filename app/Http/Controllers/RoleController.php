@@ -61,6 +61,13 @@ class RoleController extends Controller
 
     }
 
+    public function rolePermission($id)
+    {
+        $rolePermission = Role::find($id);
+
+        return view('backend.pages.rolePermission', compact('rolePermission'));
+    }
+
     public function roleEdit($id)
 
     {

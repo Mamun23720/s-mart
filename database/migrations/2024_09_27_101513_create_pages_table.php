@@ -16,7 +16,7 @@ return new class extends Migration
             $table->integer('page_position');
             $table->string('page_name');
             $table->string('page_title');
-            $table->string('page_description');
+            $table->text('page_description');
             $table->string('page_image')->nullable();
             $table->timestamps();
         });

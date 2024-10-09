@@ -27,6 +27,25 @@
             </li>
 
 
+            <li class="nav-item">
+                <a href="{{route('backend.banner.list')}}" class="nav-link">
+                    <i class="nav-icon fa-regular fa-image"></i>
+                    <p>
+                        Banner
+                    </p>
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a href="{{route('backend.customer.list')}}" class="nav-link">
+                    <i class="nav-icon fa-solid fa-people-group"></i>
+                    <p>
+                        Customer
+                    </p>
+                </a>
+            </li>
+
+
             <!-- Widgets -->
 
             <!-- <li class="nav-item">
