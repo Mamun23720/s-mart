@@ -2,21 +2,23 @@
 
 @section('content')
 
-    <div class="container mt-5">
+    <div style="padding: 50px; " class="container mt-5">
 
-        <!-- Default checkbox -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault" />
-            <label class="form-check-label" for="flexCheckDefault">Default checkbox</label>
-        </div>
+        <form action="{{route('backend.submit.permission', $id)}}" method="POST">
+            @csrf
 
-        <!-- Checked checkbox -->
-        <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked />
-            <label class="form-check-label" for="flexCheckChecked">Checked checkbox</label>
-        </div>
+                @foreach ($permissions as $per)
 
-        <a href="" class="btn btn-success">Submit</a>
+                    <div class="form-check">
+                        <input @if (in_array($per->id,$rolePermissions)) checked @endif name="permission[]" class="form-check-input" type="checkbox" value="{{$per->id}}" id="" />
+                        <label class="form-check-label" for="flexCheckDefault">{{$per->name}}</label>
+                    </div>
+
+                @endforeach
+
+            <button style="color:white; background:green;" class="btn btn-success" type="submit"><b>Submit</b></button>
+
+        </form>
 
     </div>
 

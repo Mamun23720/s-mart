@@ -116,6 +116,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/form', [RoleController::class, 'roleForm'])->name('backend.role.form');
             Route::post('/store', [RoleController::class, 'roleStore'])->name('backend.role.store');
             Route::get('/permission/{id}', [RoleController::class, 'rolePermission'])->name('backend.role.permission');
+            Route::post('/submit/permission/{id}', [RoleController::class, 'submitPermission'])->name('backend.submit.permission');
             Route::get('/edit/{id}', [RoleController::class, 'roleEdit'])->name('backend.role.edit');
             Route::post('/update/{id}', [RoleController::class, 'roleUpdate'])->name('backend.role.update');
             Route::get('/delete/{id}', [RoleController::class, 'roleDelete'])->name('backend.role.delete');
