@@ -100,7 +100,7 @@
     <div class="row">
 
         <div class="col-md-4 mt-3">
-            <b style="font-size: 36px;">User's</b>
+            <b style="font-size: 36px;">Role's</b>
         </div>
 
         <div class="col-md-4">
@@ -144,7 +144,7 @@
 
                     <td>
                         <!-- Role Permission -->
-                        <a href="{{ route('backend.role.permission', $role->id) }}" class="btn btn-warning ml-2"><i class="fa-solid fa-square-check"></i></a>
+                        <a href="{{ route('backend.role.permission', $role->id) }}" class="btn btn-warning ml-2"><b>Assign Permission</b></a>
                         <!-- Edit -->
                         <a href="{{ route('backend.role.edit', $role->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
                         <!-- Remove -->

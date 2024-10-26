@@ -103,10 +103,13 @@
     <div class="col-md-6 mt-3">
     <b style="font-size: 36px;" >Banner</b>
     </div>
+    @if (checkPermission('backend.banner.form'))
 
-    <div style="text-align: center;" class="col-md-6 mt-3">
-        <a style="background-color: #007bff;" href="{{route('backend.banner.form')}}" class="btn btn-primary btn-lg" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
-    </div>
+        <div style="text-align: center;" class="col-md-6 mt-3">
+            <a style="background-color: #007bff;" href="{{route('backend.banner.form')}}" class="btn btn-primary btn-lg" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
+        </div>
+
+    @endif
 
 </div>
 

@@ -46,12 +46,12 @@
 
                 <div class="form-group">
                     <label for="userPassword">Password</label>
-                    <input style="border: 1px solid black;  width: 100%; height: 40px; border-radius: 5px;"  type="number" id="userPassword" name="password" required>
+                    <input style="border: 1px solid black;  width: 100%; height: 40px; border-radius: 5px;"  type="password" id="userPassword" name="password" required>
                 </div>
 
                 <div class="form-group">
                     <label for="password">Confirm Password</label>
-                    <input style="border: 1px solid black;  width: 100%; height: 40px; border-radius: 5px;"  type="number" id="" name="password_confirmation" required>
+                    <input style="border: 1px solid black;  width: 100%; height: 40px; border-radius: 5px;"  type="password" id="" name="password_confirmation" required>
                 </div>
 
                 <div class="form-group">

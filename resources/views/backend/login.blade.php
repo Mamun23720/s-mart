@@ -83,7 +83,7 @@
         <h2>S-Mart</h2>
         <form action="{{ route('do.login') }}" method="post">
             @csrf
-            <label for="username">Username</label>
+            <label for="username">Email</label>
             <input type="text" id="username" name="email" required>
             <label for="password">Password</label>
             <input type="password" id="password" name="password" required>

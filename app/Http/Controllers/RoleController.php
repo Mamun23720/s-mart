@@ -16,7 +16,9 @@ class RoleController extends Controller
     {
         $allRole = Role::all();
 
-        return view('backend.roleList', compact('allRole'));
+        $allPermission = RolePermission::get()->pluck('permission_id')->toArray();
+
+        return view('backend.roleList', compact('allRole','allPermission'));
     }
 
     public function roleForm()
@@ -89,9 +91,13 @@ class RoleController extends Controller
         return redirect()->back();
         }
 
+
         try
 
         {
+
+            RolePermission::where('role_id', $request->id)->delete();
+
             foreach($request->permission as $per_id)
             {
                 RolePermission::create([
@@ -100,7 +106,7 @@ class RoleController extends Controller
                 ]);
             }
             toastr()->success('Assign Permission Succesfully !!');
-            return redirect()->back();
+            return redirect()->route('backend.role.list');
         }
 
         catch (Throwable $e)
@@ -108,7 +114,7 @@ class RoleController extends Controller
         {
             toastr()->error($e->getMessage());
         }
-        
+
     }
 
     public function roleEdit($id)

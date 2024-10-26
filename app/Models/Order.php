@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 
-class Customer extends Authenticatable
+class Order extends Model
 {
     use HasFactory;
 
     protected $guarded = [];
+    
 }

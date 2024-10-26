@@ -8,6 +8,9 @@ use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
+use App\Http\Controllers\Frontend\ShoppingCartController;
+use App\Http\Controllers\MailController;
+use App\Http\Controllers\OrderController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\RoleController;
@@ -17,31 +20,38 @@ use Illuminate\Support\Facades\Route;
 
 
 //frontend
-
 Route::get('/', [HomeController::class, 'home'])->name('frontend.home');
 Route::get('/shop', [HomeController::class, 'shop'])->name('frontend.shop');
-
-
-
-
 Route::get('/view/product/{slug}', [FrontendProductController::class, 'viewProduct'])->name('frontend.view.product');
 
+//Shopping Cart
+Route::get('/view/cart/item', [ShoppingCartController::class, 'viewCart'])->name('frontend.view.cart.item');
+Route::get('/add/to/cart/{id}', [ShoppingCartController::class, 'addToCart'])->name('frontend.addToCart');
+Route::get('/remove/cart/{id}', [ShoppingCartController::class, 'removeCart'])->name('frontend.removeCart');
 
+//Registration
+Route::get('/customer/registration', [CustomerController::class, 'customerRegistration'])->name('frontend.customer.registration');
+Route::post('/customer/registration/store', [CustomerController::class, 'customerRegistrationStore'])->name('frontend.customer.registration.store');
 
+//Login
+Route::get('/customer/login', [CustomerController::class, 'customerLogin'])->name('frontend.customer.login');
+Route::post('/customer/do/login', [CustomerController::class, 'doLogin'])->name('frontend.do.login');
+Route::get('/send/email', [MailController::class, 'sendMail'])->name('frontend.send.email');
 
-
-Route::get('/shopping/cart', [HomeController::class, 'viewCart'])->name('view.cart.item');
-
-
-
+    Route::group(['middleware' => 'customer_auth'], function () {
+        //Checkout
+        Route::get('/proceed/to/checkout', [OrderController::class, 'proceedToCheckout'])->name('frontend.proceed.checkout');
+        Route::post('/continue/to/checkout', [OrderController::class, 'continueToCheckout'])->name('frontend.continue.checkout');
+        //Logout
+        Route::get('/customer/logout', [CustomerController::class, 'customerLogout'])->name('frontend.logout');
+    });
 
 //backend
-
 Route::group(['prefix' => 'admin'], function () {
     Route::get('/login', [AuthenticationController::class, 'loginForm'])->name('login');
     Route::post('/do/login', [AuthenticationController::class, 'doLogin'])->name('do.login');
 
-    Route::group(['middleware' => 'auth'], function () {
+    Route::group(['middleware' => ['auth', 'check_permission']], function () {
         Route::get('/', [DashboardController::class, 'dashboard'])->name('backend.dashboard');
         Route::get('/logout', [AuthenticationController::class, 'logout'])->name('backend.logout');
 

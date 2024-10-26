@@ -7,11 +7,11 @@
         <form action="{{route('backend.submit.permission', $id)}}" method="POST">
             @csrf
 
-                @foreach ($permissions as $per)
+                @foreach ($permissions as $permission)
 
                     <div class="form-check">
-                        <input @if (in_array($per->id,$rolePermissions)) checked @endif name="permission[]" class="form-check-input" type="checkbox" value="{{$per->id}}" id="" />
-                        <label class="form-check-label" for="flexCheckDefault">{{$per->name}}</label>
+                        <input @if (in_array($permission->id,$rolePermissions)) checked @endif name="permission[]" class="form-check-input" type="checkbox" value="{{$permission->id}}" id="" />
+                        <label class="form-check-label" for="flexCheckDefault">{{ucfirst($permission->name)}}</label>
                     </div>
 
                 @endforeach

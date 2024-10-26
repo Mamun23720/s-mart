@@ -17,6 +17,7 @@
     <nav class="mt-2">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
 
+            @if (checkPermission('backend.dasboard'))
             <li class="nav-item">
                 <a href="{{route('backend.dashboard')}}" class="nav-link">
                     <i class="nav-icon fas fa-tachometer-alt"></i>
@@ -25,8 +26,9 @@
                     </p>
                 </a>
             </li>
+            @endif
 
-
+            @if (checkPermission('backend.banner.list'))
             <li class="nav-item">
                 <a href="{{route('backend.banner.list')}}" class="nav-link">
                     <i class="nav-icon fa-regular fa-image"></i>
@@ -35,7 +37,9 @@
                     </p>
                 </a>
             </li>
+            @endif
 
+            @if (checkPermission('backend.customer.list'))
             <li class="nav-item">
                 <a href="{{route('backend.customer.list')}}" class="nav-link">
                     <i class="nav-icon fa-solid fa-people-group"></i>
@@ -44,7 +48,7 @@
                     </p>
                 </a>
             </li>
-
+            @endif
 
             <!-- Widgets -->
 
@@ -60,6 +64,8 @@
 
             <!-- Category -->
 
+            @if (checkPermission('backend.category.list'))
+
             <li class="nav-item">
                 <a href="{{route('backend.category.list')}}" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
@@ -70,6 +76,12 @@
                     </p>
                 </a>
             </li>
+
+            @endif
+
+
+
+            @if (checkPermission('backend.brand.list'))
 
             <li class="nav-item">
                 <a href="{{route('backend.brand.list')}}" class="nav-link">
@@ -82,6 +94,10 @@
                 </a>
             </li>
 
+            @endif
+
+            @if (checkPermission('backend.product.list'))
+
             <li class="nav-item">
                 <a href="{{route('backend.product.list')}}" class="nav-link">
                         <i class="nav-icon fa-solid fa-box"></i>
@@ -92,6 +108,8 @@
                     </p>
                 </a>
             </li>
+
+            @endif
 
             <!-- Settings -->
 
@@ -138,6 +156,7 @@
                 </ul>
             </li>
 
+            @if (checkPermission('backend.role.list'))
 
             <li class="nav-item">
                 <a href="{{route('backend.role.list')}}" class="nav-link">
@@ -150,6 +169,9 @@
                 </a>
             </li>
 
+            @endif
+
+            @if (checkPermission('backend.user.list'))
 
             <li class="nav-item">
                 <a href="{{route('backend.user.list')}}" class="nav-link">
@@ -161,6 +183,8 @@
                     </p>
                 </a>
             </li>
+
+            @endif
 
 
 
@@ -703,12 +727,17 @@
                     <p>View Profile</p>
                 </a>
             </li>
+
+            @if (checkPermission('backend.logout'))
+
             <li class="nav-item">
                 <a href="{{route('backend.logout')}}" class="nav-link">
                     <i class="nav-icon far fa-circle text-danger"></i>
                     <p class="text">Logout</p>
                 </a>
             </li>
+
+            @endif
 
 
             <!-- <li class="nav-item">

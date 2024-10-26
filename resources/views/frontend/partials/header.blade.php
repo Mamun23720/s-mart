@@ -51,9 +51,9 @@
             <i class="fas fa-heart text-primary"></i>
             <span class="badge">0</span>
         </a>
-        <a href="{{route('view.cart.item')}}" class="btn border">
+        <a href="{{route('frontend.view.cart.item')}}" class="btn border">
             <i class="fas fa-shopping-cart text-primary"></i>
-            <span class="badge">0</span>
+            <span class="badge">{{ session()->has('basket') ? count(session()->get('basket')) : 0 }}</span>
         </a>
     </div>
 </div>

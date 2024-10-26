@@ -28,13 +28,18 @@ class CreatePermission extends Command
     {
         $routes= Route::getRoutes();
 
+
         foreach($routes as $route)
         {
-            if($route->getPrefix()=='/admin')
+
+
+
+            if(str_contains($route->getPrefix(),'admin'))
             {
 
                 Permission::create([
-                    'name'=>str_replace("."," ",$route->getName())
+                    'name'=>str_replace("."," ",$route->getName()),
+                    'slug'=>$route->getName()
                 ]);
 
             }

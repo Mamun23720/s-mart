@@ -56,16 +56,33 @@
                             <div class="nav-item dropdown">
                                 <a style="color: black !important; font-weight: bold;" href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages</a>
                                 <div class="dropdown-menu rounded-0 m-0">
-                                    <a href="{{ route('view.cart.item') }}" class="dropdown-item">Shopping Cart</a>
+                                    <a href="{{ route('frontend.view.cart.item') }}" class="dropdown-item">Shopping Cart</a>
                                     <a href="checkout.html" class="dropdown-item">Checkout</a>
                                 </div>
                             </div>
                             <a style="color: black !important; font-weight: bold;" href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
+
+                        @guest('customerGuard')
+
                         <div class="navbar-nav ml-auto py-0">
-                            <a style="color: black !important; font-weight: bold;" href="" class="nav-item nav-link">Login</a>
-                            <a style="color: black !important; font-weight: bold;" href="" class="nav-item nav-link">Register</a>
+                            <a style="color: black !important; font-weight: bold;" href="{{route('frontend.customer.login')}}" class="nav-item nav-link">Login</a>
+                            <a style="color: black !important; font-weight: bold;" href="{{route('frontend.customer.registration')}}" class="nav-item nav-link">Register</a>
                         </div>
+
+                        @endguest
+
+                        @auth('customerGuard')
+
+                        <div class="navbar-nav ml-auto py-0">
+                            <a style="color: black !important; font-weight: bold;" href="#" class="nav-item nav-link">{{ auth('customerGuard')->user()->name }}</a>
+                            <a style="color: black !important; font-weight: bold;" href="{{route('frontend.logout')}}" class="nav-item nav-link">Logout</a>
+                        </div>
+
+                        @endauth
+
+
+
                     </div>
                 </nav>
 
@@ -220,7 +237,7 @@
                             <a href="{{ route('frontend.view.product', $product->slug) }}"
                                 class="btn btn-sm text-dark p-0"><i class="fas fa-eye text-primary mr-1"></i>View
                                 Detail</a>
-                            <a href="" class="btn btn-sm text-dark p-0"><i
+                            <a href="{{route('frontend.addToCart', $product->id )}}" class="btn btn-sm text-dark p-0"><i
                                     class="fas fa-shopping-cart text-primary mr-1"></i>Add To Cart</a>
                         </div>
                     </div>

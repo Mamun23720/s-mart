@@ -33,13 +33,4 @@ class HomeController extends Controller
         return view('frontend.pages.shop', compact('allProduct'));
     }
 
-
-
-
-
-
-    public function viewCart()
-    {
-        return view('frontend.pages.viewCart');
-    }
 }

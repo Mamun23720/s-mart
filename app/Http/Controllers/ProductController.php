@@ -56,7 +56,7 @@ class ProductController extends Controller
         }
 
         try
-        {
+        { 
         Product::create([
             'name' => $request->productName,
             'category_id' => $request->productCategory,
