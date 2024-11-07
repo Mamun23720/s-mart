@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Mail\SendWelcomeMail;
 use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Validator;
 
 class CustomerController extends Controller
@@ -42,11 +44,13 @@ class CustomerController extends Controller
 
             $file = $request->file('customerImage');
 
-            $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
+            $fileName =url('/uploads/customer/' .date('Ymdhis') . '.' . $file->getClientOriginalExtension());
 
             $file->storeAs('customer', $fileName);
 
         }
+
+        $otp=rand(100000,999999);
 
         Customer::create([
            'name' => $request->customerName,
@@ -55,12 +59,18 @@ class CustomerController extends Controller
             'password' => bcrypt($request->password),
             'dob' => $request->customerDob,
             'number' => $request->customerNumber,
-            'image' => $fileName
+            'image' => $fileName,
+            'address' => $request->customerAddress,
+            'otp' => $otp,
         ]);
+
+        $customerEmail = $request->customerEmail;
+
+        Mail::to($request->customerEmail)->send(new SendWelcomeMail($otp));
 
         toastr()->success('Registration Complete Successfully !!!');
 
-        return redirect()->route('frontend.home');
+        return view('frontend.pages.otp', compact('customerEmail'));
     }
 
     public function customerLogin()
@@ -75,13 +85,28 @@ class CustomerController extends Controller
         $check = auth('customerGuard')->attempt($credentials);
 
         if ($check) {
-            toastr()->success('Login Successfully');
+
+            $verifiedCustomer= auth('customerGuard')->user()->is_email_verified;
+
+            if($verifiedCustomer)
+            {
+                toastr()->success('Login Successfully');
 
             return redirect()->route('frontend.home');
+            }
+
+            Auth::guard('customerGuard')->logout();
+
+            toastr()->error('Account Not Verified');
+
+            $customerEmail = $request->email;
+
+            return view('frontend.pages.otp', compact('customerEmail'));
+            
         } else {
-            toastr()->error('Login Failed');
+            toastr()->error('Invalid Credentials');
 
-            return redirect()->route('frontend.home');
+            return redirect()->back();
         }
     }
 
@@ -93,30 +118,38 @@ class CustomerController extends Controller
         return redirect()->route('frontend.home');
     }
 
+    public function viewProfile()
+    {
+        return view('frontend.pages.viewProfile');
+    }
 
+    public function editProfile()
+    {
+        return view('frontend.pages.viewProfileEdit');
+    }
 
+    public function submitProfile(Request $request)
+    {
+    //  dd($request->all());  
+        $customer= auth('customerGuard')->user();
 
+        $customer->update([
+            'name' => $request->customerName,
+            'number' => $request->customerNumber,
+            'address' => $request->customerAddress,
+        ]);
 
+        toastr()->success('Profile Updated Successfully !!!');
 
+        return view('frontend.pages.viewProfile');
 
+    }
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+//backend
 
     public function customerList()
     {
-        $allCustomer = Customer::all();
+        $allCustomer = Customer::paginate(20);
 
         return view('backend.customerList', compact('allCustomer'));
     }
@@ -145,5 +178,6 @@ class CustomerController extends Controller
     {
 
     }
+
 
 }

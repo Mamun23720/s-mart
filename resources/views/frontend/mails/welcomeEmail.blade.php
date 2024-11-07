@@ -6,11 +6,11 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
 </head>
-<body>
-    <p>Hi </p>
-    <h1>Welcome to Our S-Mart</h1>
-    <p>{{$welcomeMessage}}</p>
-    <p>Thank You</p>
+<body style="text-align: center;">
+    <p>Hello !!! </p>
+    <h1>Your otp is</h1>
+    <p>{{$user_otp}}</p>
+    <p>please verify using otp.Thank You</p>
     <p>Regards</p>
     <p>S-Mart</p>
 </body>

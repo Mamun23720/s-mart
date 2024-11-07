@@ -25,8 +25,8 @@
         }
 
         th {
-            background-color: #4CAF50;
-            color: white;
+            background-color: #ffffff;
+            color: rgb(0, 0, 0);
             font-weight: bold;
         }
 
@@ -117,42 +117,37 @@
     <table class="table-sm">
         <thead>
             <tr>
-                <th>ID</th>
+                <th>No</th>
                 <th>Name</th>
-                <th>User Name</th>
+                <th>Image</th>
+                {{-- <th>User Name</th> --}}
                 <th>Email</th>
                 <th>Date of Birth</th>
                 <th>Phone</th>
-                <th>Address</th>
-                <th>Image</th>
-                <th>Registration Date</th>
                 <th>Status</th>
+                {{-- <th>Registration Date</th> --}}
                 <th>Action</th>
             </tr>
         </thead>
         <tbody>
             @foreach ($allCustomer as $key => $customer)
                 <tr>
-                    <td>{{ $key + 1 }}</td>
+                    <td>{{ $allCustomer->firstItem() + $key}}</td>
                     <td>{{ $customer->name }}</td>
-                    <td>{{ $customer->username }}</td>
+                    <td><img src="{{$customer->image}}" alt="{{$customer->name}}"></td>
+                    {{-- <td>{{ $customer->username }}</td> --}}
                     <td>{{ $customer->email }}</td>
                     <td>{{ $customer->dob }}</td>
-                    <td>{{ $customer->phone }}</td>
-                    <td>{{ $customer->address }}</td>
-                    <td><img src="{{ url('/uploads/customer/' . $customer->image) }}" alt="{{$customer->name}}"></td>
-                    <td>{{ $user->created_at->format('d-m-Y h:i A') }}</td>
+                    <td>{{ $customer->number }}</td>
                     <td>
-                        @if ($user->status == 'Active')
-                            <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%; text-align: center; line-height: 30px;">
-                                <i class="fas fa-thumbs-up" style="color: white;"></i>
-                            </span>
+                        @if ($customer->is_email_verified = 1)
+                            Active
                         @else
-                            <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%; text-align: center; line-height: 30px;">
-                                <i class="fas fa-thumbs-down" style="color: white;"></i>
-                            </span>
+                            Deactive
                         @endif
                     </td>
+                    {{-- <td>{{ $customer->created_at->format('d-m-Y h:i A') }}</td> --}}
+
                     <td>
                         <!-- Edit -->
                         <a href="{{ route('backend.customer.edit', $customer->id) }}" class="btn btn-info ml-2"><i
@@ -166,4 +161,6 @@
 
         </tbody>
     </table>
+
+    {{$allCustomer->links()}}
 @endsection

@@ -62,27 +62,6 @@
                             </div>
                             <a style="color: black !important; font-weight: bold;" href="contact.html" class="nav-item nav-link">Contact</a>
                         </div>
-
-                        @guest('customerGuard')
-
-                        <div class="navbar-nav ml-auto py-0">
-                            <a style="color: black !important; font-weight: bold;" href="{{route('frontend.customer.login')}}" class="nav-item nav-link">Login</a>
-                            <a style="color: black !important; font-weight: bold;" href="{{route('frontend.customer.registration')}}" class="nav-item nav-link">Register</a>
-                        </div>
-
-                        @endguest
-
-                        @auth('customerGuard')
-
-                        <div class="navbar-nav ml-auto py-0">
-                            <a style="color: black !important; font-weight: bold;" href="#" class="nav-item nav-link">{{ auth('customerGuard')->user()->name }}</a>
-                            <a style="color: black !important; font-weight: bold;" href="{{route('frontend.logout')}}" class="nav-item nav-link">Logout</a>
-                        </div>
-
-                        @endauth
-
-
-
                     </div>
                 </nav>
 

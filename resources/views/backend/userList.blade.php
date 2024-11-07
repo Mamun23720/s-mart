@@ -100,7 +100,7 @@
     <div class="row">
 
         <div class="col-md-4 mt-3">
-            <b style="font-size: 36px;">User's</b>
+            <b style="font-size: 36px;">User</b>
         </div>
 
         <div class="col-md-4">

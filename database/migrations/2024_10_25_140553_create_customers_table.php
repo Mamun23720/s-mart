@@ -14,12 +14,17 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('username');
+            $table->string('username')->nullable();
             $table->string('email');
             $table->string('password');
-            $table->string('dob');
+            $table->string('dob')->nullable();
             $table->string('number');
-            $table->string('image');
+            $table->string('image')->nullable();
+            $table->string('address')->nullable();
+            $table->string('otp')->nullable();
+            $table->boolean('is_email_verified')->default(false);
+            $table->boolean('is_mobile_verified')->default(false);
+            $table->timestamp('otp_expired_at')->nullable();
             $table->timestamps();
         });
     }

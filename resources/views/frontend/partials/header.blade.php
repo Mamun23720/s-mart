@@ -47,13 +47,46 @@
         </form>
     </div>
     <div class="col-lg-3 col-6 text-right">
+
+        {{-- Wishlist --}}
+
         <a href="" class="btn border">
             <i class="fas fa-heart text-primary"></i>
             <span class="badge">0</span>
         </a>
+
+        {{-- Cart Item --}}
+
         <a href="{{route('frontend.view.cart.item')}}" class="btn border">
             <i class="fas fa-shopping-cart text-primary"></i>
             <span class="badge">{{ session()->has('basket') ? count(session()->get('basket')) : 0 }}</span>
         </a>
+
+        {{-- Login --}}
+
+        @guest('customerGuard')
+
+            <a href="{{route('frontend.customer.login')}}" class="btn border">
+                <i class="fas fa-user-tie text-primary"></i>
+                <span>My Account</span>
+            </a>
+
+        @endguest
+
+        @auth('customerGuard')
+
+            <a href="{{route('frontend.view.profile')}}" class="btn border">
+                <i class="fas fa-user-tie text-primary"></i>
+                <span></span>
+            </a>
+
+            <a href="{{route('frontend.logout')}}" class="btn border">
+                <i class="fas fa-power-off text-primary"></i>
+                <span>Logout</span>
+            </a>
+
+        @endauth
+
+
     </div>
 </div>

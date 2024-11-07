@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Banner;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
+use Yajra\DataTables\Facades\DataTables;
 
 class BrandController extends Controller
 {
@@ -16,6 +18,8 @@ class BrandController extends Controller
 
         return view('backend.brandList', compact('allBrand'));
     }
+
+   
 
     public function brandForm()
     {

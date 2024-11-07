@@ -13,14 +13,14 @@ class SendWelcomeMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $welcomeMessage;
+    public $user_otp;
 
     /**
      * Create a new message instance.
      */
-    public function __construct($welcomeMessage)
+    public function __construct($otp)
     {
-        $this->welcomeMessage = $welcomeMessage;
+        $this->user_otp = $otp;
     }
 
     /**
@@ -29,7 +29,7 @@ class SendWelcomeMail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Send Welcome Email in Laravel 11 using Mailtrap',
+            subject: 'OTP Verification Code',
         );
     }
 

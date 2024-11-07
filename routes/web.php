@@ -32,11 +32,21 @@ Route::get('/remove/cart/{id}', [ShoppingCartController::class, 'removeCart'])->
 //Registration
 Route::get('/customer/registration', [CustomerController::class, 'customerRegistration'])->name('frontend.customer.registration');
 Route::post('/customer/registration/store', [CustomerController::class, 'customerRegistrationStore'])->name('frontend.customer.registration.store');
+Route::get('/view/profile',[CustomerController::class, 'viewProfile'])->name('frontend.view.profile');
+Route::get('/edit/profile',[CustomerController::class, 'editProfile'])->name('frontend.edit.profile');
+Route::post('/submit/profile',[CustomerController::class, 'submitProfile'])->name('frontend.submit.profile');
+
+
+
+Route::get('/send/email', [MailController::class, 'sendMail'])->name('frontend.send.email');
+Route::post('/verify/otp', [MailController::class,'checkOtp'])->name('frontend.check.otp');
+
+
+
 
 //Login
 Route::get('/customer/login', [CustomerController::class, 'customerLogin'])->name('frontend.customer.login');
 Route::post('/customer/do/login', [CustomerController::class, 'doLogin'])->name('frontend.do.login');
-Route::get('/send/email', [MailController::class, 'sendMail'])->name('frontend.send.email');
 
     Route::group(['middleware' => 'customer_auth'], function () {
         //Checkout
@@ -45,6 +55,11 @@ Route::get('/send/email', [MailController::class, 'sendMail'])->name('frontend.s
         //Logout
         Route::get('/customer/logout', [CustomerController::class, 'customerLogout'])->name('frontend.logout');
     });
+
+
+
+
+
 
 //backend
 Route::group(['prefix' => 'admin'], function () {
@@ -62,6 +77,10 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [BannerController::class, 'bannerEdit'])->name('backend.banner.edit');
             Route::post('/update/{id}', [BannerController::class, 'bannerUpdate'])->name('backend.banner.update');
             Route::get('/delete/{id}', [BannerController::class, 'bannerDelete'])->name('backend.banner.delete');
+            Route::get('/import/excel/form', [BannerController::class, 'bannerImportExcelForm'])->name('backend.banner.import.excel.form');
+            Route::post('/import/excel/store', [BannerController::class, 'bannerImportExcelStore'])->name('backend.banner.import.excel.store');
+            Route::get('/ajax/banner/data',[BannerController::class,'getProductData'])->name('ajax.banner.data');
+
         });
 
         Route::group(['prefix' => 'customer'], function () {

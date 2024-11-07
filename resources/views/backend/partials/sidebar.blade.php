@@ -7,10 +7,11 @@
 
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
         <div class="image">
-            <img src="https://png.pngtree.com/png-vector/20191130/ourmid/pngtree-call-center-operator-icon-circle-png-image_2058988.jpg" alt="User Image">
+            <a href="#" class="d-block">User Name: {{ ucfirst(Auth::user()->name) }}</a>
+            <a href="#" class="d-block">Position: {{ Auth::user()->role->name }}</a>
         </div>
         <div class="info">
-            <a href="#" class="d-block">Admin</a>
+
         </div>
     </div>
 
@@ -177,7 +178,7 @@
                 <a href="{{route('backend.user.list')}}" class="nav-link">
                         <i class="nav-icon fa-solid fa-users"></i>
                     <p>
-                        User's
+                        User
                         {{-- <i class="fas fa-angle-left right"></i> --}}
                         <!-- <span class="badge badge-info right">6</span> -->
                     </p>
@@ -720,13 +721,7 @@
 
 
 
-            <li class="nav-header">Profile</li>
-            <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon far fa-circle text-warning"></i>
-                    <p>View Profile</p>
-                </a>
-            </li>
+
 
             @if (checkPermission('backend.logout'))
 
@@ -738,15 +733,6 @@
             </li>
 
             @endif
-
-
-            <!-- <li class="nav-item">
-                <a href="#" class="nav-link">
-                    <i class="nav-icon far fa-circle text-info"></i>
-                    <p>Informational</p>
-                </a>
-            </li> -->
-
 
         </ul>
     </nav>

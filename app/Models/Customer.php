@@ -11,4 +11,9 @@ class Customer extends Authenticatable
     use HasFactory;
 
     protected $guarded = [];
+
+    public function setImageAttribute($value)
+    {
+        return url('/uploads/customer/' . $value);
+    }
 }

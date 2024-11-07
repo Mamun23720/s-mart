@@ -56,7 +56,7 @@ class ProductController extends Controller
         }
 
         try
-        { 
+        {
         Product::create([
             'name' => $request->productName,
             'category_id' => $request->productCategory,
@@ -79,7 +79,7 @@ class ProductController extends Controller
         {
         toastr()->error('Something Went Wrong');
 
-        return redirect()->route('backend.product.list');
+        return view('backend.productList', compact('e'));
         }
 
     }

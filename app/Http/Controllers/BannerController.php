@@ -6,6 +6,9 @@ use App\Models\Banner;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
+use App\Imports\BannerImport;
+use Maatwebsite\Excel\Facades\Excel as FacadesExcel;
+use Yajra\DataTables\Facades\DataTables;
 
 use function PHPUnit\Framework\returnSelf;
 
@@ -13,14 +16,45 @@ class BannerController extends Controller
 {
     public function bannerList()
     {
-        $allBanner = Banner::all();
+        return view('backend.bannerList');
+    }
 
-        return view('backend.bannerList', compact('allBanner'));
+    public function getProductData()
+    {
+
+        $data=Banner::all();
+        return DataTables::of($data)
+                    ->addIndexColumn()
+                    ->addColumn('action', function($row){
+
+                        $editUrl = route('backend.banner.edit', $row->id);
+
+                        $deleteUrl = route('backend.banner.delete', $row->id);
+
+                           $btn = '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm">Edit</a><a href="'.$deleteUrl.'" class="edit btn btn-danger btn-sm mr-2">Delete</a>';
+                            return $btn;
+                    })
+                    ->rawColumns(['action'])
+                    ->make(true);
     }
 
     public function bannerForm()
     {
         return view('backend.pages.bannerForm');
+    }
+
+    public function bannerImportExcelForm()
+    {
+        return view('backend.pages.bannerImportExcelForm');
+    }
+
+    public function bannerImportExcelStore(Request $request)
+    {
+        $allBanner=Banner::all();
+        // dd($request->all());
+        FacadesExcel::import(new BannerImport, $request->file('bannerImport'));
+
+        return view('backend.bannerList', compact('allBanner'));
     }
 
     public function bannerStore(Request $request)

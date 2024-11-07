@@ -11,4 +11,9 @@ class Banner extends Model
 
     protected $guarded = [];
 
+    public function getImageAttribute($value)
+    {
+        return url('/uploads/banner/' . $value);
+    }
+
 }

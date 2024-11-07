@@ -23,7 +23,7 @@
                         <div class="form-group">
                             <label for="customerUserName">User Name</label>
                             <input style="border: 1px solid black;  height: 40px;" type="text" id=""
-                                name="customerUserName" required>
+                                name="customerUserName">
                         </div>
 
                         <div class="form-group">
@@ -38,6 +38,12 @@
                                 name="password" required>
                         </div>
 
+                        <div class="form-group">
+                            <label for="address">Enter Your Address</label>
+                            <input style="border: 1px solid black; width:210%;  height: 40px;" type="text" id=""
+                                name="customerAddress" required>
+                        </div>
+
                     </div>
 
                     <!-- Right Column -->
@@ -46,7 +52,7 @@
                         <div class="form-group">
                             <label for="customerDob">Date of Birth</label>
                             <input style="border: 1px solid black; width: 100%; height: 40px; border-radius: 5px;" type="date" id=""
-                                name="customerDob" required>
+                                name="customerDob">
                         </div>
 
                         <div class="form-group">
@@ -68,6 +74,7 @@
                         </div>
 
                     </div>
+                       
                 </div>
 
                 <button type="submit" class="submit-btn mt-2" style="color:black"><b>Register Here</b></button>

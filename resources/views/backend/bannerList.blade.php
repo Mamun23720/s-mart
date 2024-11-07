@@ -21,13 +21,12 @@
     th,
     td {
         padding: 15px;
-        text-align: center;
         border-bottom: 1px solid #ddd;
     }
 
     th {
-        background-color: #4CAF50;
-        color: white;
+        background-color: white;
+        color: black;
         font-weight: bold;
     }
 
@@ -107,61 +106,60 @@
 
         <div style="text-align: center;" class="col-md-6 mt-3">
             <a style="background-color: #007bff;" href="{{route('backend.banner.form')}}" class="btn btn-primary btn-lg" ><b>Add New  <i class="fa-solid fa-plus"></i>  </b></a>
+            <a style="" href="{{route('backend.banner.import.excel.form')}}" class="btn btn-warning btn-lg" ><b>Import</b></a>
+
         </div>
 
     @endif
 
 </div>
 
-<table class="table-sm" >
+<table class="data-table" >
     <thead>
         <tr>
             <th>ID</th>
-            <th style="text-align: start;">Image</th>
+            <th>Image</th>
             <th>Name</th>
             <th>Description</th>
             <th>Status</th>
             <th>Action</th>
         </tr>
     </thead>
-    <tbody>
-        @foreach ($allBanner as $key=>$banner)
+        <tbody>
 
-        <tr>
-            <td>{{ $key + 1 }}</td>
-
-            <td>
-                <img src="{{ url('/uploads/banner/' . $banner->image) }}" alt="{{$banner->name}}" >
-            </td>
-
-            <td>{{$banner->name}}</td>
-
-            <td>{{$banner->description}}</td>
-
-            <td>
-                @if ($banner->status == 'Active')
-                    <span style="display: inline-block; width: 30px; height: 30px; background-color: green; border-radius: 50%; text-align: center; line-height: 30px;">
-                        <i class="fas fa-thumbs-up" style="color: white;"></i>
-                    </span>
-                @else
-                    <span style="display: inline-block; width: 30px; height: 30px; background-color: red; border-radius: 50%; text-align: center; line-height: 30px;">
-                        <i class="fas fa-thumbs-down" style="color: white;"></i>
-                    </span>
-                @endif
-            </td>
-
-            <td>
-                <!-- Edit -->
-                <a href="{{ route('backend.banner.edit', $banner->id) }}" class="btn btn-info ml-2"><i class="fa-solid fa-pen-to-square"></i></a>
-                <!-- Remove -->
-                <a href="{{route('backend.banner.delete', $banner->id)}}" class="btn btn-danger ml-2"><i class="fa-solid fa-trash"></i></a>
-            </td>
-        </tr>
-
-        @endforeach
-
-    </tbody>
+        </tbody>
 </table>
 
-
 @endsection
+
+
+@push('js')
+
+<script type="text/javascript">
+
+  $(function () {
+
+    var table = $('.data-table').DataTable({
+
+        processing: true,
+
+        serverSide: false,
+
+        ajax: "{{ route('ajax.banner.data') }}",
+        columns: [
+            {data: 'id', name: 'id'},
+
+            { "data": "image" ,
+              "render": function ( data) {
+              return '<img src="'+data+'" width="10px">';}
+            },
+
+            {data: 'name', name: 'name'},
+            {data: 'description', name: 'description',searchable:true},
+            {data: 'status', name: 'status'},
+            {data: 'action', name: 'action', orderable: false, searchable: false},
+        ]});
+    });
+
+</script>
+@endpush

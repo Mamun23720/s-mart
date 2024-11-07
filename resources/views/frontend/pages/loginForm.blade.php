@@ -28,6 +28,8 @@
                 </div>
 
                 <button type="submit" class="submit-btn mt-2" style="color:black"><b>Login Here</b></button>
+                <p style="text-align: center; margin-top:20px; margin-bottom:0%">Don't Have Any Account?</p>
+                <a class="btn mt-2" style="color:#0011ff; border-radius:5px; width:100%;" href="{{route('frontend.customer.registration')}}"><b>Register Now</b></a>
             </form>
 
         </div>
