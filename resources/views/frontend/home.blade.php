@@ -70,7 +70,7 @@
                     <div class="carousel-inner">
                         @foreach ($allBanner as $key => $item)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 410px;">
-                                <img style="height: 100%; width:100%;" class="img-fluid" src="{{ url('/uploads/banner/' . $item->image) }}" alt="Image">
+                                <img style="height: 100%; width:100%;" class="img-fluid" src="{{ $item->image }}" alt="Image">
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 700px;">
                                         <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order

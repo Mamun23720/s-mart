@@ -16,4 +16,8 @@ class Banner extends Model
         return url('/uploads/banner/' . $value);
     }
 
+    public function setImageAttribute($value)
+    {
+        $this->attributes['image'] = basename($value);
+    }
 }

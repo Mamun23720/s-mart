@@ -21,21 +21,25 @@ class BannerController extends Controller
 
     public function getProductData()
     {
-
-        $data=Banner::all();
-        return DataTables::of($data)
-                    ->addIndexColumn()
-                    ->addColumn('action', function($row){
-
-                        $editUrl = route('backend.banner.edit', $row->id);
-
-                        $deleteUrl = route('backend.banner.delete', $row->id);
-
-                           $btn = '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm">Edit</a><a href="'.$deleteUrl.'" class="edit btn btn-danger btn-sm mr-2">Delete</a>';
-                            return $btn;
-                    })
-                    ->rawColumns(['action'])
-                    ->make(true);
+        try
+        {
+            $data=Banner::all();
+                return DataTables::of($data)
+                            ->addIndexColumn()
+                            ->addColumn('action', function($row){
+                                $editUrl = route('backend.banner.edit', $row->id);
+                                $deleteUrl = route('backend.banner.delete', $row->id);
+                                $btn = '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm">Edit</a><a href="'.$deleteUrl.'" class="edit btn btn-danger btn-sm mr-2">Delete</a>';
+                                    return $btn;
+                            })
+                            ->rawColumns(['action'])
+                            ->make(true);
+        }
+        catch(Throwable $e)
+        {
+            toastr()->error($e->getMessage());
+            return redirect()->back();
+        }
     }
 
     public function bannerForm()
@@ -50,24 +54,26 @@ class BannerController extends Controller
 
     public function bannerImportExcelStore(Request $request)
     {
-        $allBanner=Banner::all();
-        // dd($request->all());
-        FacadesExcel::import(new BannerImport, $request->file('bannerImport'));
-
-        return view('backend.bannerList', compact('allBanner'));
+        try
+        {
+            $allBanner=Banner::all();
+            FacadesExcel::import(new BannerImport, $request->file('bannerImport'));
+            return view('backend.bannerList', compact('allBanner'));
+        }
+        catch(Throwable $e)
+        {
+            toastr()->error($e->getMessage());
+            return redirect()->back();
+        }
     }
 
     public function bannerStore(Request $request)
     {
-
-        // dd($request->all());..
-
         $validation = Validator::make($request->all(), [
             'bannerName' => 'required',
             'bannerImage' => 'required|file',
             'bannerDescription' => 'required',
         ]);
-
         if ($validation->fails())
         {
             foreach ($validation->errors()->all() as $errorMessage) {
@@ -75,16 +81,13 @@ class BannerController extends Controller
             }
             return redirect()->route('backend.pages.bannerForm')->withErrors($validation)->withInput();
         }
-
         $fileName = null;
-
         if($request->hasFile('bannerImage'))
         {
             $file = $request->file('bannerImage');
             $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('banner', $fileName);
         }
-
         try
         {
         Banner::create([
@@ -93,68 +96,47 @@ class BannerController extends Controller
             'description' => $request->bannerDescription,
             'status' => $request->bannerStatus,
         ]);
-
         toastr()->success('Banner Added Succesfully !!');
-
         return redirect()->route('backend.banner.list');
         }
-
         catch(Throwable $e)
         {
-        toastr()->error('Something Went Wrong');
-
+        toastr()->error($e->getMessage());
         return redirect()->route('backend.banner.list');
         }
-
     }
 
     public function bannerEdit($id)
     {
         $banner = Banner::find($id);
-
         return view('backend.pages.bannerEdit', compact('banner'));
     }
 
-
     public function bannerUpdate(Request $request, $id)
-
     {
-
         $banner = Banner::find($id);
-
-
         $fileName = $banner->image;
-
         if($request->hasFile('bannerImage'))
         {
             $file = $request->file('bannerImage');
             $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('banner', $fileName);
         }
-
         $banner->update([
-
             'image' => $fileName,
             'name' => $request->bannerName,
             'description' => $request->bannerDescription,
             'status' => $request->bannerStatus,
-
         ]);
-
         toastr()->success('Banner Updated Succesfully !!');
-
         return redirect()->route('backend.banner.list');
     }
 
     public function bannerDelete($id)
     {
         $deleteBanner = Banner::find($id);
-
         $deleteBanner->delete();
-
         toastr()->success('Banner Removed Succesfully !!');
-
         return redirect()->back();
     }
-
 }

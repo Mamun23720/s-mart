@@ -147,7 +147,11 @@
 
         ajax: "{{ route('ajax.banner.data') }}",
         columns: [
-            {data: 'id', name: 'id'},
+            {"data": null,
+              "name": "id",
+              "render": function (data, type, row, meta) {
+                  return meta.row + 1;}
+            },
 
             { "data": "image" ,
               "render": function ( data) {
