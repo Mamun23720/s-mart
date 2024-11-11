@@ -17,6 +17,8 @@ use App\Http\Controllers\RoleController;
 use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
+    
+
 
 //frontend
 Route::get('/', [HomeController::class, 'home'])->name('frontend.home');
