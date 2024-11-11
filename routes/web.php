@@ -18,7 +18,6 @@ use App\Http\Controllers\WebsiteController;
 use Illuminate\Support\Facades\Route;
 
 
-
 //frontend
 Route::get('/', [HomeController::class, 'home'])->name('frontend.home');
 Route::get('/shop', [HomeController::class, 'shop'])->name('frontend.shop');
