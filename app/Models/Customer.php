@@ -11,7 +11,7 @@ class Customer extends Authenticatable
 
     protected $guarded = [];
 
-    public function setImageAttribute($value)
+    public function getImageAttribute($value)
     {
         if ($value) {
             return url('/uploads/customer/' . $value);

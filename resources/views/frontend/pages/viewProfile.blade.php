@@ -21,7 +21,7 @@
               <div class="card">
                 <div class="card-body">
                   <div class="d-flex flex-column align-items-center text-center">
-                    <img src="https://bootdey.com/img/Content/avatar/avatar7.png" alt="Admin" class="rounded-circle" width="150">
+                    <img src="{{auth('customerGuard')->user()->image}}" alt="Admin" class="rounded-circle" width="150">
                     <div class="mt-3">
                       <h4>{{ auth('customerGuard')->user()->username }}</h4>
                       <p class=" mb-1">{{ auth('customerGuard')->user()->dob }}</p>

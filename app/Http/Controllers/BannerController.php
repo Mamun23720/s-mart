@@ -86,10 +86,10 @@ class BannerController extends Controller
         if($request->hasFile('bannerImage'))
         {
             $file = $request->file('bannerImage');
-            $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
+            $fileName = date(format: 'Ymdhis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('banner', $fileName);
         }
-
+ 
         try
         {
         Banner::create([

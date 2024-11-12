@@ -91,6 +91,8 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [CustomerController::class, 'customerEdit'])->name('backend.customer.edit');
             Route::post('/update/{id}', [CustomerController::class, 'customerUpdate'])->name('backend.customer.update');
             Route::get('/delete/{id}', [CustomerController::class, 'customerDelete'])->name('backend.customer.delete');
+            Route::get('/ajax/customer/data',[CustomerController::class,'getCustomerData'])->name('ajax.customer.data');
+
         });
 
         Route::group(['prefix' => 'category'], function () {

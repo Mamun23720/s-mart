@@ -7,7 +7,8 @@ use App\Models\Customer;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Validator;
+use Throwable;
+use Yajra\DataTables\Facades\DataTables;
 
 class CustomerController extends Controller
 {
@@ -44,7 +45,7 @@ class CustomerController extends Controller
 
             $file = $request->file('customerImage');
 
-            $fileName =url('/uploads/customer/' .date('Ymdhis') . '.' . $file->getClientOriginalExtension());
+            $fileName = date(format: 'Ymdhis') . '.' . $file->getClientOriginalExtension();
 
             $file->storeAs('customer', $fileName);
 
@@ -149,9 +150,30 @@ class CustomerController extends Controller
 
     public function customerList()
     {
-        $allCustomer = Customer::paginate(20);
+        return view('backend.customerList');
+    }
 
-        return view('backend.customerList', compact('allCustomer'));
+
+    public function getCustomerData()
+    {
+        try
+        {
+            $data=Customer::all();
+                return DataTables::of($data)
+                            ->addIndexColumn()
+                            ->addColumn('action', function($row){
+                                $editUrl = route('backend.customer.edit', $row->id);
+                                $btn = '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm mr-2">Edit</a>';
+                                    return $btn;
+                            })
+                            ->rawColumns(['action'])
+                            ->make(true);
+        }
+        catch(Throwable $e)
+        {
+            toastr()->error($e->getMessage());
+            return redirect()->back();
+        }
     }
 
     public function customerForm()
