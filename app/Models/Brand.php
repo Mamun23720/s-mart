@@ -13,12 +13,11 @@ class Brand extends Model
 
     public function getLogoAttribute($value)
     {
+        if ($value) {
         return url('/uploads/brand/' . $value);
+        }
+        else{
+            return url('/uploads/brand.png');
+        }
     }
-
-    public function setLogoAttribute($value)
-    {
-        $this->attributes['logo'] = basename($value);
-    }
-
 }

@@ -21,7 +21,6 @@ class CategoryFactory extends Factory
         return [
             'name' => $this->faker->unique()->streetName(),
             'description' => $this->faker->paragraph(),
-            'image' => $this->faker->imageUrl(),
         ];
     }
 }

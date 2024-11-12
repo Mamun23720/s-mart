@@ -21,7 +21,6 @@ class BannerFactory extends Factory
         return [
             'name' => $this->faker->unique()->word(),
             'description' => $this->faker->paragraph(),
-            'image' => $this->faker->imageUrl(),
         ];
     }
 }

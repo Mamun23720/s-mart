@@ -19,7 +19,7 @@
                         </div>
                         @endif
                         <!-- Discount Badge End -->
-                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{{ url('/uploads/product/' . $product->image) }}" alt="Product Image">
+                        <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{{$product->image}}" alt="Product Image">
                     </div>
                 </a>
                 <div class="card-body border-left border-right text-center p-0 pt-4">

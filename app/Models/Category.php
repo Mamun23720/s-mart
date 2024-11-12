@@ -19,12 +19,11 @@ class Category extends Model
 
     public function getImageAttribute($value)
     {
-        return url('/uploads/category/' . $value);
+        if ($value) {
+            return url('/uploads/category/' . $value);
+            }
+            else{
+                return url('/uploads/category.png');
+            }
     }
-
-    public function setImageAttribute($value)
-    {
-        $this->attributes['image'] = basename($value);
-    }
-
 }

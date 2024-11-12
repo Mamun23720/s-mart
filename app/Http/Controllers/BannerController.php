@@ -71,7 +71,7 @@ class BannerController extends Controller
     {
         $validation = Validator::make($request->all(), [
             'bannerName' => 'required',
-            'bannerImage' => 'required|file',
+            'bannerImage' => 'file',
             'bannerDescription' => 'required',
         ]);
         if ($validation->fails())
@@ -79,8 +79,9 @@ class BannerController extends Controller
             foreach ($validation->errors()->all() as $errorMessage) {
                 toastr()->error($errorMessage);
             }
-            return redirect()->route('backend.pages.bannerForm')->withErrors($validation)->withInput();
+            return redirect()->back()->withErrors($validation)->withInput();
         }
+
         $fileName = null;
         if($request->hasFile('bannerImage'))
         {
@@ -88,6 +89,7 @@ class BannerController extends Controller
             $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
             $file->storeAs('banner', $fileName);
         }
+
         try
         {
         Banner::create([

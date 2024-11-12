@@ -59,8 +59,13 @@
 
             { "data": "image" ,
               "render": function ( data) {
-              return '<img src="'+data+'" width="10px">';}
-            },
+                    console.log('Image URL:', data);
+                        if (data) {
+                        return '<img src="' + data + '" width="100px" alt="Image not found">';
+                        }
+                        return 'No image available';
+                    }
+                },
 
             {data: 'name', name: 'name',searchable:true},
             {data: 'description', name: 'description',searchable:false},

@@ -8,7 +8,7 @@
         <!-- Product Image Section -->
         <div class="col-lg-6">
             <div class="product-image">
-                <img src="{{ url('/uploads/product/' . $product->image) }}" class="img-fluid" alt="{{ $product->name }}">
+                <img src="{{$product->image}}" class="img-fluid" alt="{{ $product->name }}">
             </div>
         </div>
 
@@ -55,7 +55,7 @@
             @foreach($relatedProducts as $relatedProduct)
             <div class="col-md-3 mb-4">
                 <div class="card h-100 text-center" style="border: 2px solid black">
-                    <img style="height: 300px; width:100%;" src="{{ url('/uploads/product/' . $relatedProduct->image) }}" class="card-img-top" alt="{{ $relatedProduct->name }}">
+                    <img style="height: 300px; width:100%;" src="{{$relatedProduct->image}}" class="card-img-top" alt="{{ $relatedProduct->name }}">
                     <div class="card-body">
                         <h5 class="card-title">{{ $relatedProduct->name }}</h5>
                         <p class="card-text text-danger d-flex justify-content-center align-items-center">

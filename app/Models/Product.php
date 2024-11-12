@@ -24,13 +24,11 @@ class Product extends Model
 
     public function getImageAttribute($value)
     {
-        return url('/uploads/product/' . $value);
+        if ($value) {
+            return url('/uploads/product/' . $value);
+            }
+            else{
+                return url('/uploads/product.png');
+            }
     }
-
-    public function setImageAttribute($value)
-    {
-        $this->attributes['image'] = basename($value);
-    }
-
-
 }

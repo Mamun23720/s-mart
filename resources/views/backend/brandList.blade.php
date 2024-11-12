@@ -60,8 +60,13 @@
 
             { "data": "logo" ,
               "render": function ( data) {
-              return '<img src="'+data+'" width="10px">';}
-            },
+                    console.log('Logo URL:', data);
+                        if (data) {
+                        return '<img src="' + data + '" width="100px" alt="Logo not found">';
+                        }
+                        return 'No logo available';
+                    }
+                },
 
             {data: 'name', name: 'name',searchable:true},
             {data: 'description', name: 'description',searchable:false},

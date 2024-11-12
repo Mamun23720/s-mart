@@ -25,7 +25,6 @@ class CustomerFactory extends Factory
             'password' => bcrypt('123'),
             'dob' => $this->faker->date(),
             'number' => $this->faker->unique()->phoneNumber(),
-            'image' => $this->faker->imageUrl(),
         ];
     }
 }

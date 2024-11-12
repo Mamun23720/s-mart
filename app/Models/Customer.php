@@ -13,6 +13,11 @@ class Customer extends Authenticatable
 
     public function setImageAttribute($value)
     {
-        return url('/uploads/customer/' . $value);
+        if ($value) {
+            return url('/uploads/customer/' . $value);
+            }
+            else{
+                return url('/uploads/customer.jpg');
+            }
     }
 }
