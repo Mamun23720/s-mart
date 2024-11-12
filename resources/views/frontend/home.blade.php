@@ -13,7 +13,7 @@
 
 
                 <nav class="collapse show navbar navbar-vertical navbar-light align-items-start p-0 border border-top-0 border-bottom-0" id="navbar-vertical">
-                    @foreach ($allCategory as $category)
+                    @foreach ($popularCategory as $category)
                     <div class="navbar-nav w-100 overflow-hidden" style="height: 100%;">
                         {{-- <div class="nav-item dropdown">
                             <a href="#" class="nav-link" data-toggle="dropdown">Dresses <i class="fa fa-angle-down float-right mt-1"></i></a>
@@ -70,7 +70,7 @@
                     <div class="carousel-inner">
                         @foreach ($allBanner as $key => $item)
                             <div class="carousel-item {{ $key == 0 ? 'active' : '' }}" style="height: 410px;">
-                                <img style="height: 100%; width:100%;" class="img-fluid" src="{{ $item->image }}" alt="Image">
+                                <img style="height: 100%; width:100%;" class="img-fluid" src="{{$item->image}}" alt="Image">
                                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                                     <div class="p-3" style="max-width: 700px;">
                                         <h4 class="text-light text-uppercase font-weight-medium mb-3">10% Off Your First Order
@@ -142,7 +142,7 @@
                     <div class="cat-item d-flex flex-column border" style="width: 303px; border: 2px solid black !important" >
                         <a href="" class="cat-img position-relative overflow-hidden" style="height: 300px; width: 300px;">
                             <img style="width: 100%; height: 100%;"
-                                class="img-fluid" src="{{ url('/uploads/category/' . $category->image) }}"
+                                class="img-fluid" src="{{$category->image}}"
                                 alt="No image">
                         </a>
                         <h2 style="background-color:#D19C97; text-align: center; margin-bottom: 0; font-family: 'Times New Roman', Times, serif;">{{ $category->name }}</h2>
@@ -195,12 +195,11 @@
         <div class="row px-xl-5 pb-3" style="gap: 0px;">
             @foreach ($trendyProducts as $product)
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-1">
-                    <div class="card product-item border-0">
+                    <div style="border: 2px solid black !important;" class="card product-item border-0">
                         <a href="{{ route('frontend.view.product', $product->slug) }}">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0"
                                 style="height: 350px;">
-                                <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;"
-                                    src="{{ url('/uploads/product/' . $product->image) }}" alt="Product Image">
+                                <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{{$product->image}}" alt="Product Image">
                             </div>
                         </a>
                         <div class="card-body border-left border-right text-center p-0 pt-4">
@@ -261,12 +260,11 @@
         <div class="row px-xl-5 pb-3" style="gap: 0px;">
             @foreach ($justForYou as $product)
                 <div class="col-lg-3 col-md-6 col-sm-12 pb-4">
-                    <div class="card product-item border-0">
+                    <div style="border: 2px solid black !important;" class="card product-item border-0">
                         <a href="{{ route('frontend.view.product', $product->slug) }}">
                             <div class="card-header product-img position-relative overflow-hidden bg-transparent border p-0"
                                 style="height: 350px;">
-                                <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;"
-                                    src="{{ url('/uploads/product/' . $product->image) }}" alt="Product Image">
+                                <img class="img-fluid" style="width: 100%; height: 100%; object-fit: cover;" src="{{$product->image}}" alt="Product Image">
                             </div>
                         </a>
                         <div class="card-body border-left border-right text-center p-0 pt-4">
@@ -300,8 +298,8 @@
             <div class="col">
                 <div class="owl-carousel vendor-carousel">
                     @foreach ($allBrand as $brand)
-                        <div class="vendor-item border p-4">
-                            <img src="{{ url('/uploads/brand/' . $brand->logo) }}" alt="No logo">
+                        <div style="border: 2px solid black !important;" class="vendor-item border p-4">
+                            <img src="{{$brand->logo}}" alt="No logo">
                         </div>
                     @endforeach
                 </div>

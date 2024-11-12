@@ -8,17 +8,38 @@ use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
+use Yajra\DataTables\Facades\DataTables;
 
 class ProductController extends Controller
 {
 
     public function productList()
     {
-        $allProduct = Product::with('category', 'brand')->get();
+        return view('backend.productList');
+    }
 
-        // $allProduct = Product::with('brand')->get();
 
-        return view('backend.productList', compact('allProduct'));
+    public function getProductData()
+    {
+        try
+        {
+            $data=Product::all();
+                return DataTables::of($data)
+                            ->addIndexColumn()
+                            ->addColumn('action', function($row){
+                                $editUrl = route('backend.product.edit', $row->id);
+                                $deleteUrl = route('backend.product.delete', $row->id);
+                                $btn = '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm mr-2">Edit</a><a href="'.$deleteUrl.'" class="edit btn btn-danger btn-sm mr-2">Delete</a>';
+                                    return $btn;
+                            })
+                            ->rawColumns(['action'])
+                            ->make(true);
+        }
+        catch(Throwable $e)
+        {
+            toastr()->error($e->getMessage());
+            return redirect()->back();
+        }
     }
 
     public function productForm()
@@ -120,7 +141,7 @@ class ProductController extends Controller
             'name' => $request->productName,
             // 'category_id' => $request->productCategory,
             // 'brand_id' => $request->productBrand,
-            // 'slug' => str()->slug($request->productSlug),
+            'slug' => str()->slug($request->productName),
             'price' => $request->productPrice,
             'discount' => $request->productDiscount,
             'stock' => $request->productStock,

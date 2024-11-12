@@ -5,7 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
-{
+{ 
     /**
      * Run the migrations.
      */
@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('category_id')->nullable();
             $table->string('brand_id')->nullable();
             $table->string('name');
-            $table->string('slug')->unique();
+            $table->string('slug')->nullable();
             $table->string('price');
             $table->string('discount')->nullable();
             $table->string('stock')->nullable();

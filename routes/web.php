@@ -80,7 +80,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/delete/{id}', [BannerController::class, 'bannerDelete'])->name('backend.banner.delete');
             Route::get('/import/excel/form', [BannerController::class, 'bannerImportExcelForm'])->name('backend.banner.import.excel.form');
             Route::post('/import/excel/store', [BannerController::class, 'bannerImportExcelStore'])->name('backend.banner.import.excel.store');
-            Route::get('/ajax/banner/data',[BannerController::class,'getProductData'])->name('ajax.banner.data');
+            Route::get('/ajax/banner/data',[BannerController::class,'getBannerData'])->name('ajax.banner.data');
 
         });
 
@@ -100,6 +100,8 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [CategoryController::class, 'categoryEdit'])->name('backend.category.edit');
             Route::post('/update/{id}', [CategoryController::class, 'categoryUpdate'])->name('backend.category.update');
             Route::get('/delete/{id}', [CategoryController::class, 'categoryDelete'])->name('backend.category.delete');
+            Route::get('/ajax/category/data',[CategoryController::class,'getCategoryData'])->name('ajax.category.data');
+
         });
 
         Route::group(['prefix' => 'brand'], function () {
@@ -109,6 +111,8 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [BrandController::class, 'brandEdit'])->name('backend.brand.edit');
             Route::post('/update/{id}', [BrandController::class, 'brandUpdate'])->name('backend.brand.update');
             Route::get('/delete/{id}', [BrandController::class, 'brandDelete'])->name('backend.brand.delete');
+            Route::get('/ajax/brand/data',[BrandController::class,'getBrandData'])->name('ajax.brand.data');
+
         });
 
         Route::group(['prefix' => 'product'], function () {
@@ -118,6 +122,7 @@ Route::group(['prefix' => 'admin'], function () {
             Route::get('/edit/{id}', [ProductController::class, 'productEdit'])->name('backend.product.edit');
             Route::post('/update/{id}', [ProductController::class, 'productUpdate'])->name('backend.product.update');
             Route::get('/delete/{id}', [ProductController::class, 'productDelete'])->name('backend.product.delete');
+            Route::get('/ajax/product/data',[ProductController::class,'getProductData'])->name('ajax.product.data');
         });
 
         Route::group(['prefix' => 'settings'], function () {

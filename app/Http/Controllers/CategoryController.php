@@ -6,14 +6,36 @@ use App\Models\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
+use Yajra\DataTables\Facades\DataTables;
 
 class CategoryController extends Controller
 {
     public function categoryList()
     {
-        $allCategory = Category::with('parent')->get();
+        return view('backend.categoryList');
+    }
 
-        return view('backend.categoryList', compact('allCategory'));
+    public function getCategoryData()
+    {
+        try
+        {
+            $data=Category::all();
+                return DataTables::of($data)
+                            ->addIndexColumn()
+                            ->addColumn('action', function($row){
+                                $editUrl = route('backend.category.edit', $row->id);
+                                $deleteUrl = route('backend.category.delete', $row->id);
+                                $btn = '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm mr-2">Edit</a><a href="'.$deleteUrl.'" class="edit btn btn-danger btn-sm mr-2">Delete</a>';
+                                    return $btn;
+                            })
+                            ->rawColumns(['action'])
+                            ->make(true);
+        }
+        catch(Throwable $e)
+        {
+            toastr()->error($e->getMessage());
+            return redirect()->back();
+        }
     }
 
     public function categoryForm()

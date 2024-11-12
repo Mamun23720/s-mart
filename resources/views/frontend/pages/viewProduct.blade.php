@@ -38,7 +38,7 @@
                 </div>
 
                 <div class="mt-3">
-                    <button class="btn btn-primary btn-lg">Add to Cart</button>
+                    <a href="{{route('frontend.addToCart', $product->id )}}" class="btn btn-primary btn-lg">Add to Cart</a>
                 </div>
             </div>
         </div>

@@ -16,4 +16,15 @@ class Category extends Model
     {
         return $this->hasOne(Category::class, 'id' , 'parent_id');
     }
+
+    public function getImageAttribute($value)
+    {
+        return url('/uploads/category/' . $value);
+    }
+
+    public function setImageAttribute($value)
+    {
+        $this->attributes['image'] = basename($value);
+    }
+
 }

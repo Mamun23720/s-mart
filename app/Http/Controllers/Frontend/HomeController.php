@@ -15,6 +15,8 @@ class HomeController extends Controller
     {
         $allBanner = Banner::all();
 
+        $popularCategory= Category::all();
+
         $allCategory = Category::limit(4)->get();
 
         $trendyProducts = Product::latest()->limit(4)->get();
@@ -23,7 +25,7 @@ class HomeController extends Controller
 
         $allBrand = Brand::all();
 
-        return view('frontend.home', compact('allBanner', 'allCategory','allBrand', 'trendyProducts','justForYou'));
+        return view('frontend.home', compact('allBanner','popularCategory', 'allCategory','allBrand', 'trendyProducts','justForYou'));
     }
 
     public function shop()

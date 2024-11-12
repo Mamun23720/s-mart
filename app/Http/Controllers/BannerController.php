@@ -19,7 +19,7 @@ class BannerController extends Controller
         return view('backend.bannerList');
     }
 
-    public function getProductData()
+    public function getBannerData()
     {
         try
         {
@@ -29,7 +29,7 @@ class BannerController extends Controller
                             ->addColumn('action', function($row){
                                 $editUrl = route('backend.banner.edit', $row->id);
                                 $deleteUrl = route('backend.banner.delete', $row->id);
-                                $btn = '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm">Edit</a><a href="'.$deleteUrl.'" class="edit btn btn-danger btn-sm mr-2">Delete</a>';
+                                $btn = '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm mr-2">Edit</a><a href="'.$deleteUrl.'" class="edit btn btn-danger btn-sm mr-2">Delete</a>';
                                     return $btn;
                             })
                             ->rawColumns(['action'])
@@ -114,6 +114,7 @@ class BannerController extends Controller
 
     public function bannerUpdate(Request $request, $id)
     {
+        // dd($request->all());
         $banner = Banner::find($id);
         $fileName = $banner->image;
         if($request->hasFile('bannerImage'))

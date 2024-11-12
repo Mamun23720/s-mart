@@ -22,4 +22,15 @@ class Product extends Model
         return $this->belongsTo(Brand::class);
     }
 
+    public function getImageAttribute($value)
+    {
+        return url('/uploads/product/' . $value);
+    }
+
+    public function setImageAttribute($value)
+    {
+        $this->attributes['image'] = basename($value);
+    }
+
+
 }

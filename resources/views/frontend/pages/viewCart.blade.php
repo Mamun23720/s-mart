@@ -89,8 +89,7 @@
                                         <!-- Product 1 -->
                                         <tr>
                                             <td class="align-middle">
-                                                <img src="{{ url('/uploads/product/' . $cart['image']) }}"alt="{{ $cart['image'] }}"
-                                                    style="width:80px">
+                                                <img src="{{$cart['image']}}"alt="{{ $cart['name'] }}" style="width:80px">
                                             </td>
                                             <td class="align-middle">{{ $cart['name'] }}</td>
                                             <td class="align-middle">{{ number_format($cart['price'], 2) }}৳</td>

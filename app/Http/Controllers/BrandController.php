@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Banner;
 use App\Models\Brand;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -14,9 +13,31 @@ class BrandController extends Controller
 
     public function brandList()
     {
-        $allBrand = Brand::all();
 
-        return view('backend.brandList', compact('allBrand'));
+        return view('backend.brandList');
+    }
+
+    public function getBrandData()
+    {
+        try
+        {
+            $data=Brand::all();
+                return DataTables::of($data)
+                            ->addIndexColumn()
+                            ->addColumn('action', function($row){
+                                $editUrl = route('backend.brand.edit', $row->id);
+                                $deleteUrl = route('backend.brand.delete', $row->id);
+                                $btn = '<a href="' . $editUrl . '" class="edit btn btn-primary btn-sm mr-2">Edit</a><a href="'.$deleteUrl.'" class="edit btn btn-danger btn-sm mr-2">Delete</a>';
+                                    return $btn;
+                            })
+                            ->rawColumns(['action'])
+                            ->make(true);
+        }
+        catch(Throwable $e)
+        {
+            toastr()->error($e->getMessage());
+            return redirect()->back();
+        }
     }
 
    
@@ -31,7 +52,7 @@ class BrandController extends Controller
     public function brandStore(Request $request)
     {
 
-        // dd($request->all());
+        dd($request->all());
 
         $validation= Validator::make($request->all(),
  [

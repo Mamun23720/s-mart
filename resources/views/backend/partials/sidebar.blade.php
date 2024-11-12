@@ -23,14 +23,6 @@
                     </a>
                 </li>
             @endif
-            @if (checkPermission('backend.customer.list'))
-                <li class="nav-item">
-                    <a href="{{ route('backend.customer.list') }}" class="nav-link">
-                        <i class="nav-icon fa-solid fa-people-group"></i>
-                        <p><b>Customer</b><span class="badge badge-danger right">New</span></p>
-                    </a>
-                </li>
-            @endif
             @if (checkPermission('backend.category.list'))
                 <li class="nav-item">
                     <a href="{{ route('backend.category.list') }}" class="nav-link">
@@ -109,6 +101,14 @@
                     <a href="{{ route('backend.user.list') }}" class="nav-link">
                         <i class="nav-icon fa-solid fa-users"></i>
                         <p><b>User</b></p>
+                    </a>
+                </li>
+            @endif
+            @if (checkPermission('backend.customer.list'))
+                <li class="nav-item">
+                    <a href="{{ route('backend.customer.list') }}" class="nav-link">
+                        <i class="nav-icon fa-solid fa-people-group"></i>
+                        <p><b>Customer</b><span class="badge badge-danger right">New</span></p>
                     </a>
                 </li>
             @endif

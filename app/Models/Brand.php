@@ -11,4 +11,14 @@ class Brand extends Model
 
     protected $guarded = [];
 
+    public function getLogoAttribute($value)
+    {
+        return url('/uploads/brand/' . $value);
+    }
+
+    public function setLogoAttribute($value)
+    {
+        $this->attributes['logo'] = basename($value);
+    }
+
 }
