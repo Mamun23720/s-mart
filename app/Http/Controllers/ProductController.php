@@ -2,11 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Exports\ProductExport;
+use App\Http\Requests\ProductRequest;
+use App\Imports\ProductImport;
 use App\Models\Brand;
 use App\Models\Category;
 use App\Models\Product;
+use App\Repositories\ProductRepository;
+use App\Services\FileUploadService;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Validator;
+use Maatwebsite\Excel\Facades\Excel;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
 
@@ -18,7 +25,22 @@ class ProductController extends Controller
         return view('backend.productList');
     }
 
-
+    public function export()
+    {
+        return Excel::download(new ProductExport, 'products_'.date('Y-m-d').'.xlsx');
+    }
+    public function import(Request $request) 
+    {
+        try{
+            Excel::import(new ProductImport, $request->file('file'));
+            toastr()->success('Product Imported Succesfully');
+            return redirect()->route('backend.product.list');
+        }catch(\Exception $ex){
+            toastr()->error($ex->getMessage());
+            return redirect()->route('backend.product.list');
+        }
+        
+    }
     public function getProductData()
     {
         try
@@ -44,65 +66,25 @@ class ProductController extends Controller
 
     public function productForm()
     {
-        $allProduct = Product::all();
-        $allProd = Brand::all();
-
+        $allBrand = Brand::all();
         $allCategory = Category::with('parent')->get();
-
-        return view('backend.pages.productForm', compact('allProduct', 'allCategory', 'allProd'));
+        return view('backend.pages.productForm', compact( 'allCategory', 'allBrand'));
     }
 
     public function productStore(Request $request)
     {
-
-        // dd($request->all());
-
-        $validation= Validator::make($request->all(),
- [
-            'productName' => 'required | min:2',
-            'productSlug' => 'required | min:2',
-            'productPrice' => 'required',
-            'productStock' => 'required',
-            'productCategory' => 'required',
-            'productImage' => 'file',
-        ]);
-
-        $fileName = null;
-
-        if($request->hasFile('productImage'))
-        {
-            $file = $request->file('productImage');
-            $fileName = date('Ymdhis') . '.' . $file->getClientOriginalExtension();
-            $file->storeAs('product', $fileName);
-        }
-
         try
         {
-        Product::create([
-            'name' => $request->productName,
-            'category_id' => $request->productCategory,
-            'brand_id' => $request->productBrand,
-            'slug' => str()->slug($request->productName),
-            'price' => $request->productPrice,
-            'discount' => $request->productDiscount,
-            'stock' => $request->productStock,
-            'description' => $request->productDescription,
-            'image' => $fileName,
-            'status' => $request->productStatus,
-        ]);
-
+        $fileName = FileUploadService::fileUpload($request->file('productImage'),'product');
+        ProductRepository::store($request, $fileName);
         toastr()->success('Product Added Succesfully !!');
-
         return redirect()->route('backend.product.list');
         }
-
         catch(Throwable $e)
         {
         toastr()->error('Something Went Wrong');
-
         return view('backend.productList', compact('e'));
         }
-
     }
 
     public function productEdit($id)

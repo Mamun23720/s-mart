@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Category;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Cache;
 use Illuminate\Support\Facades\Validator;
 use Throwable;
 use Yajra\DataTables\Facades\DataTables;
@@ -12,6 +13,10 @@ class CategoryController extends Controller
 {
     public function categoryList()
     {
+        if(Cache::get('cache')){
+            $title = 'data is coming from cache';
+            
+        }
         return view('backend.categoryList');
     }
 

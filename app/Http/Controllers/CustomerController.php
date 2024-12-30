@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\CustomerRegistrationEmailJob;
 use App\Mail\SendWelcomeMail;
 use App\Models\Customer;
 use Illuminate\Http\Request;
@@ -67,7 +68,8 @@ class CustomerController extends Controller
 
         $customerEmail = $request->customerEmail;
 
-        Mail::to($request->customerEmail)->send(new SendWelcomeMail($otp));
+        // Mail::to($request->customerEmail)->send(new SendWelcomeMail($otp));
+        dispatch(new CustomerRegistrationEmailJob($customerEmail,$otp));
 
         toastr()->success('Registration Complete Successfully !!!');
 

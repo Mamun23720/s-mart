@@ -17,8 +17,7 @@ class ProductController extends Controller
 
             $relatedProducts = Product::where('id', '!=', $product->id)
                                         ->where('category_id', '=', $product->category_id)
-                                        ->get()
-                                        ->random(4);
+                                        ->get();
 
             return view('frontend.pages.viewProduct', compact('product','relatedProducts'));
 

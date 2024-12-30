@@ -15,7 +15,7 @@
                     <div class="col-md-6">
 
                         <div class="form-group">
-                            <label for="firstName">Enter Your Name</label>
+                            <label for="firstName">Full Name</label>
                             <input style="border: 1px solid black;  height: 40px;" type="text" id=""
                                 name="customerName" required>
                         </div>
@@ -39,7 +39,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="address">Enter Your Address</label>
+                            <label for="address">Street Address</label>
                             <input style="border: 1px solid black; width:210%;  height: 40px;" type="text" id=""
                                 name="customerAddress" required>
                         </div>
@@ -62,7 +62,7 @@
                         </div>
 
                         <div class="form-group">
-                            <label for="customerImage">Customer Image</label>
+                            <label for="customerImage"> Image</label>
                             <input style="border: 1px solid black;  height: 40px;" type="file" id=""
                                 name="customerImage">
                         </div>

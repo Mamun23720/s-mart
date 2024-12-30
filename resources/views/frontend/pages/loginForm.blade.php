@@ -26,6 +26,19 @@
 
                     </div>
                 </div>
+                <div style="text-align: center; margin-top:10px; margin-bottom:10px;">
+                    <div class="d-inline-flex align-items-center">
+                        
+                        <a style=" margin-right: 30px;" class="text-dark px-2" href="">
+                            <i style="font-size: 30px;" class="fab fa-facebook-f"></i>
+                        </a>
+                        
+                        <a class="text-dark px-2" href="{{route('frontend.github','github')}}">
+                            <i style="font-size: 30px;" class="fab fa-github"></i>
+                        </a>
+                        
+                    </div>
+                </div>
 
                 <button type="submit" class="submit-btn mt-2" style="color:black"><b>Login Here</b></button>
                 <p style="text-align: center; margin-top:20px; margin-bottom:0%">Don't Have Any Account?</p>

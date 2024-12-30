@@ -23,7 +23,7 @@
             <th>Category Name</th>
             <!-- <th>Parent Name</th> -->
             {{-- <th>Category Slug</th> --}}
-            <th>Description</th>
+            {{-- <th>Description</th> --}}
             <th>Action</th>
         </tr>
     </thead>
@@ -68,7 +68,7 @@
                 },
 
             {data: 'name', name: 'name',searchable:true},
-            {data: 'description', name: 'description',searchable:false},
+            // {data: 'description', name: 'description',searchable:false},
             {data: 'action', name: 'action', orderable: false, searchable: false},
         ],
         columnDefs: [

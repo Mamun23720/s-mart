@@ -1,10 +1,6 @@
 @extends('backend.master')
 
-
-
-
 @section('content')
-
 
 <div class="content-header">
                 <div class="container-fluid">
@@ -21,10 +17,6 @@
                     </div>
                 </div>
             </div>
-
-
-
-
 
                 <div class="container-fluid">
 

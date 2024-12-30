@@ -27,7 +27,7 @@
                 <li class="nav-item">
                     <a href="{{ route('backend.category.list') }}" class="nav-link">
                         <i class="nav-icon fas fa-copy"></i>
-                        <p><b>Category</b><span class="badge badge-info right">6</span></p>
+                        <p><b>Category</b><span class="badge badge-info right">10</span></p>
                     </a>
                 </li>
             @endif

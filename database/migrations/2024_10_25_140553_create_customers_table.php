@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('customers', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('provider_id')->nullable();
             $table->string('username')->nullable();
             $table->string('email');
             $table->string('password');
@@ -25,6 +26,7 @@ return new class extends Migration
             $table->boolean('is_email_verified')->default(false);
             $table->boolean('is_mobile_verified')->default(false);
             $table->timestamp('otp_expired_at')->nullable();
+            $table->rememberToken();
             $table->timestamps();
         });
     }

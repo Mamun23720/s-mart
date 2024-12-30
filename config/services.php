@@ -24,6 +24,12 @@ return [
         'region' => env('AWS_DEFAULT_REGION', 'us-east-1'),
     ],
 
+    'github' => [
+    'client_id' => env('GITHUB_ID','Ov23liUmw2KjssNxyrUC'),
+    'client_secret' => env('GITHUB_SECRET', 'cf85a568bf47b41538385bd88fa09d23024cac7b'),
+    'redirect' => env('GITHUB_REDIRECT', 'http://s-mart.test/github/callback'),
+    ],
+
     'resend' => [
         'key' => env('RESEND_KEY'),
     ],

@@ -13,7 +13,7 @@ class ProductsTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Product::factory()->count(200)->create();
+        Product::factory()->count(20)->create();
 
     }
 }

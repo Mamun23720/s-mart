@@ -6,8 +6,7 @@
             <!-- HTML: Category Form -->
             <div style="border: solid #007bff;" class="form-container">
 
-                <form action="{{ route('backend.product.store') }}" id="categoryForm" enctype="multipart/form-data"
-                    method="post">
+                <form action="{{route('backend.product.store')}}" enctype="multipart/form-data" method="POST">
                     @csrf
 
                     <div class="row">
@@ -47,7 +46,7 @@
                                 <select style="border: 1px solid black; width: 100%; height: 40px; border-radius: 5px;"
                                     name="productBrand" id="">
                                     <option selected value="">Select a brand</option>
-                                    @foreach ($allProd as $brand)
+                                    @foreach ($allBrand as $brand)
                                         @if (empty($brand->id))
                                             <option value=""></option>
                                         @else
@@ -99,7 +98,6 @@
                             </div>
                         </div>
                     </div>
-
                     <button type="submit" class="submit-btn">Add Product</button>
                 </form>
 
