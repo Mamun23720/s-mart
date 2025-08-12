@@ -6,6 +6,7 @@ use App\Http\Controllers\BrandController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\CustomerController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\Frontend\BusinessSettingController;
 use App\Http\Controllers\Frontend\HomeController;
 use App\Http\Controllers\Frontend\ProductController as FrontendProductController;
 use App\Http\Controllers\Frontend\ShoppingCartController;
@@ -20,6 +21,11 @@ use Illuminate\Support\Facades\Route;
 
 
 //frontend
+
+Route::get('/faqs', [BusinessSettingController::class, 'faqs'])->name('frontend.faqs');
+Route::get('/help', [BusinessSettingController::class, 'help'])->name('frontend.help');
+Route::get('/support', [BusinessSettingController::class, 'support'])->name('frontend.support');
+
 Route::get('/', [HomeController::class, 'home'])->name('frontend.home');
 Route::get('/shop', [HomeController::class, 'shop'])->name('frontend.shop');
 Route::get('/view/product/{slug}', [FrontendProductController::class, 'viewProduct'])->name('frontend.view.product');

@@ -13,6 +13,6 @@ class BannersTableSeeder extends Seeder
      */
     public function run(): void
     {
-        Banner::factory()->count(3)->create();
+        Banner::factory()->count(1)->create();
     }
 }
